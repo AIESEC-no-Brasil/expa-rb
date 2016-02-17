@@ -1,6 +1,7 @@
 require_relative 'offices'
 
 class People
+  # Data that comes at the lists
   attr_accessor :id
   attr_accessor :email
   attr_accessor :url
@@ -18,7 +19,37 @@ class People
   attr_accessor :created_at
   attr_accessor :updated_at
 
+  # Adittional data that comes at the get attributes
+  attr_accessor :middles_names
+  attr_accessor :introduction
+  attr_accessor :aiesec_email
+  attr_accessor :payment
+  attr_accessor :programmes
+  attr_accessor :views
+  attr_accessor :favourites_count
+  attr_accessor :contacted_at
+  attr_accessor :contacted_by
+  attr_accessor :gender
+  attr_accessor :address_info
+  attr_accessor :contact_info
+  attr_accessor :current_office
+  attr_accessor :cv_info
+  attr_accessor :profile_photos_urls
+  attr_accessor :cover_photo_urls
+  attr_accessor :teams
+  attr_accessor :positions
+  attr_accessor :profile
+  attr_accessor :academic_experience
+  attr_accessor :professional_experience
+  attr_accessor :managers
+  attr_accessor :missing_profile_fields
+  attr_accessor :nps_score
+  attr_accessor :current_experience
+  attr_accessor :permissions
+
   def initialize(json)
+    #TODO: Certify every field is receiving the right information type when getting attributes
+    # Data that comes at the lists
     self.id = json['id'].to_i unless json['id'].nil?
     self.email = json['email'] unless json['email'].nil?
     self.url = URI(json['url']) unless json['url'].nil?
@@ -35,19 +66,44 @@ class People
     self.location = json['location'] unless json['location'].nil?
     self.created_at = Time.parse(json['created_at']) unless json['created_at'].nil?
     self.updated_at = Time.parse(json['updated_at']) unless json['updated_at'].nil?
+
+    # Adittional data that comes at the get attributes
+    self.middles_names = json['middles_names'] unless json['middles_names'].nil?
+    self.introduction = json['introduction'] unless json['introduction'].nil?
+    self.aiesec_email = json['aiesec_email'] unless json['aiesec_email'].nil?
+    self.payment = json['payment'] unless json['payment'].nil?
+    self.programmes = json['programmes'] unless json['programmes'].nil?
+    self.views = json['views'] unless json['views'].nil?
+    self.favourites_count = json['favourites_count'] unless json['favourites_count'].nil?
+    self.contacted_at = json['contacted_at'] unless json['contacted_at'].nil?
+    self.contacted_by = json['contacted_by'] unless json['contacted_by'].nil?
+    self.gender = json['gender'] unless json['gender'].nil?
+    self.address_info = json['address_info'] unless json['address_info'].nil?
+    self.contact_info = json['contact_info'] unless json['contact_info'].nil?
+    self.current_office = json['current_office'] unless json['current_office'].nil?
+    self.cv_info = json['cv_info'] unless json['cv_info'].nil?
+    self.profile_photos_urls = json['profile_photos_urls'] unless json['profile_photos_urls'].nil?
+    self.cover_photo_urls = URI(json['cover_photo_urls']) unless json['cover_photo_urls'].nil?
+    self.teams = json['teams'] unless json['teams'].nil?
+    self.positions = json['positions'] unless json['positions'].nil?
+    self.profile = json['profile'] unless json['profile'].nil?
+    self.academic_experience = json['academic_experience'] unless json['academic_experience'].nil?
+    self.professional_experience = json['professional_experience'] unless json['professional_experience'].nil?
+    self.managers = json['managers'] unless json['managers'].nil?
+    self.missing_profile_fields = json['missing_profile_fields'] unless json['missing_profile_fields'].nil?
+    self.nps_score = json['nps_score'] unless json['nps_score'].nil?
+    self.current_experience = json['current_experience'] unless json['current_experience'].nil?
+    self.permissions = json['permissions'] unless json['permissions'].nil?
   end
 end
 
 module EXPA::Peoples
   class << self
-    def find_by_id(id)
-
-    end
 
     def list_by_param(params = {})
       peoples = []
 
-      res = find_json(params)
+      res = list_json(params)
       data = res['data'] unless res.nil?
 
       for register in data
@@ -72,8 +128,13 @@ module EXPA::Peoples
       peoples
     end
 
-    def get_attributes(id)
+    def find_by_id(id)
+      get_attributes(id)
+    end
 
+    def get_attributes(id)
+      res = get_attribute_json(id)
+      People.new(res) unless res.nil?
     end
 
     def get_applications(id)
@@ -93,7 +154,7 @@ module EXPA::Peoples
         @total_items
       else
         begin
-          res = find_json
+          res = list_json
           @total_items = res['paging']['total_items'].to_i unless res.nil?
         end
         @total_items
@@ -111,12 +172,24 @@ module EXPA::Peoples
 
     private
 
-    def find_json(params = {})
+    def list_json(params = {})
       params['access_token'] = EXPA.client.get_updated_token
       params['page'] = 1 unless params.has_key?('page')
       params['per_page'] = 25 unless params.has_key?('per_page')
 
-      uri = URI (url_return_all_people)
+      uri = URI(url_return_all_people)
+      uri.query = URI.encode_www_form(params)
+
+      res = Net::HTTP.get(uri)
+      JSON.parse(res) unless res.nil?
+    end
+
+    def get_attribute_json(id)
+      params = {}
+      params['access_token'] = EXPA.client.get_updated_token
+      params['id'] = id
+
+      uri = URI(url_view_person_attributes(id))
       uri.query = URI.encode_www_form(params)
 
       res = Net::HTTP.get(uri)
@@ -128,19 +201,11 @@ module EXPA::Peoples
     end
 
     def url_view_person_attributes(id)
-      url_return_all_people + '/' + id
+      url_return_all_people + '/' + id.to_s
     end
 
     def url_get_all_applications_for(id)
       url_view_person_attributes(id) + '/applications'
-    end
-
-    def get_filters
-      @filters
-    end
-
-    def erase_filters
-      @filters = nil
     end
   end
 end
