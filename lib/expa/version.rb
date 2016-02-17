@@ -1,3 +1,3 @@
-module Expa
-  VERSION = "0.1.0"
+module EXPA
+  VERSION = '0.1.0'
 end

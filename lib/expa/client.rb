@@ -1,5 +1,3 @@
-require 'mechanize'
-
 module EXPA
   class Client
 
@@ -11,11 +9,13 @@ module EXPA
     end
 
     def auth(email, password)
+      @email = email
+      @password = password
       agent = Mechanize.new
       page = agent.get(@url)
       aiesec_form = page.form()
-      aiesec_form.field_with(:name => 'user[email]').value = email
-      aiesec_form.field_with(:name => 'user[password]').value = password
+      aiesec_form.field_with(:name => 'user[email]').value = @email
+      aiesec_form.field_with(:name => 'user[password]').value = @password
 
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
@@ -30,6 +30,19 @@ module EXPA
             @max_age = cj.jar['experience.aiesec.org']['/']['expa_token'].max_age
           end
         end
+      end
+    end
+
+    def get_updated_token
+      nil if @email.nil? || @password.nil?
+
+      time = (@expiration_time + (@max_age/2))
+
+      if (Time.now < time)
+        @token
+      else
+        auth(@email, @password)
+        @token
       end
     end
 

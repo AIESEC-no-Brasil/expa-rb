@@ -1,11 +1,7 @@
 require 'test_helper'
 
-class ExpaTest < Minitest::Test
+class EXPATest < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::Expa::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert false
+    refute_nil ::EXPA::VERSION
   end
 end
