@@ -1,4 +1,5 @@
 require_relative 'offices'
+require_relative 'applications'
 
 class People
   # Data that comes at the lists
@@ -75,56 +76,53 @@ class People
     self.programmes = json['programmes'] unless json['programmes'].nil?
     self.views = json['views'] unless json['views'].nil?
     self.favourites_count = json['favourites_count'] unless json['favourites_count'].nil?
-    self.contacted_at = json['contacted_at'] unless json['contacted_at'].nil?
-    self.contacted_by = json['contacted_by'] unless json['contacted_by'].nil?
+    self.contacted_at = Time.parse(json['contacted_at']) unless json['contacted_at'].nil?
+    self.contacted_by = EXPA::Peoples.find_by_id(json['contacted_by']) unless json['contacted_by'].nil?
     self.gender = json['gender'] unless json['gender'].nil?
-    self.address_info = json['address_info'] unless json['address_info'].nil?
-    self.contact_info = json['contact_info'] unless json['contact_info'].nil?
+    self.address_info = json['address_info'] unless json['address_info'].nil? #TODO struct
+    self.contact_info = json['contact_info'] unless json['contact_info'].nil? #TODO struct
     self.current_office = json['current_office'] unless json['current_office'].nil?
     self.cv_info = json['cv_info'] unless json['cv_info'].nil?
     self.profile_photos_urls = json['profile_photos_urls'] unless json['profile_photos_urls'].nil?
     self.cover_photo_urls = URI(json['cover_photo_urls']) unless json['cover_photo_urls'].nil?
     self.teams = json['teams'] unless json['teams'].nil?
     self.positions = json['positions'] unless json['positions'].nil?
-    self.profile = json['profile'] unless json['profile'].nil?
-    self.academic_experience = json['academic_experience'] unless json['academic_experience'].nil?
-    self.professional_experience = json['professional_experience'] unless json['professional_experience'].nil?
-    self.managers = json['managers'] unless json['managers'].nil?
+    self.profile = json['profile'] unless json['profile'].nil? #TODO struct
+    self.academic_experience = json['academic_experience'] unless json['academic_experience'].nil? #TODO struct
+    self.professional_experience = json['professional_experience'] unless json['professional_experience'].nil? #TODO struct
+    self.managers = json['managers'] unless json['managers'].nil? #TODO struct
     self.missing_profile_fields = json['missing_profile_fields'] unless json['missing_profile_fields'].nil?
     self.nps_score = json['nps_score'] unless json['nps_score'].nil?
     self.current_experience = json['current_experience'] unless json['current_experience'].nil?
-    self.permissions = json['permissions'] unless json['permissions'].nil?
+    self.permissions = json['permissions'] unless json['permissions'].nil? #TODO struct
   end
 end
 
 module EXPA::Peoples
   class << self
-
     def list_by_param(params = {})
       peoples = []
 
       res = list_json(params)
       data = res['data'] unless res.nil?
 
-      for register in data
-        peoples << People.new(register)
+      data.each do |item|
+        peoples << People.new(item)
       end
+
       peoples
     end
 
     def list
       peoples = []
       params = {'per_page' => 100}
-      total_pages = self.total_items / params['per_page']
+      total_pages = total_items / params['per_page'] + 1
 
       for i in 1..total_pages
         params['page'] = i
-        peoples.concat(self.list_by_param(params))
+        peoples.concat(list_by_param(params))
       end
 
-      for register in data
-        peoples << People.new(register)
-      end
       peoples
     end
 
@@ -137,37 +135,43 @@ module EXPA::Peoples
       People.new(res) unless res.nil?
     end
 
+    def list_applications_by_id(id)
+      get_applications(id)
+    end
+
     def get_applications(id)
+      applications = []
 
-    end
+      params = {'per_page' => 100}
+      total_pages = total_applications_from_person(id) / params['per_page'] + 1
 
-    def list_by_country(country_id, offset = 0, limit = 1000, filters = {})
+      for i in 1..total_pages
+        params['page'] = i
+        res = get_applications_json(id, params)
+        data = res['data'] unless res.nil?
 
-    end
+        data.each do |item|
+          applications << Application.new(item)
+        end
+      end
 
-    def list_by_commitee(committee, offset = 0, limit = 1000, filter = {})
-
+      applications
     end
 
     def total_items
-      if @total_items
-        @total_items
-      else
-        begin
-          res = list_json
-          @total_items = res['paging']['total_items'].to_i unless res.nil?
-        end
-        @total_items
+      unless @total_items
+        res = list_json
+        @total_items = res['paging']['total_items'].to_i unless res.nil?
       end
+      @total_items
     end
 
-    #@param status [String]
-    def set_filters_status(status)
-      @filters[:status] = status
-    end
-
-    def clean_filters_status
-      @filters.slice!(:status) if @filters.has_key?(:status)
+    def total_applications_from_person(id)
+      unless @total_applications
+        res = get_applications_json(id)
+        @total_applications = res['paging']['total_items'].to_i unless res.nil?
+      end
+      @total_applications
     end
 
     private
@@ -180,20 +184,49 @@ module EXPA::Peoples
       uri = URI(url_return_all_people)
       uri.query = URI.encode_www_form(params)
 
-      res = Net::HTTP.get(uri)
-      JSON.parse(res) unless res.nil?
+      begin
+        res = Net::HTTP.get(uri)
+      rescue => exception
+        puts exception.to_s
+      else
+        JSON.parse(res) unless res.nil?
+      end
     end
 
     def get_attribute_json(id)
       params = {}
       params['access_token'] = EXPA.client.get_updated_token
-      params['id'] = id
+      params['person_id'] = id
 
       uri = URI(url_view_person_attributes(id))
       uri.query = URI.encode_www_form(params)
 
-      res = Net::HTTP.get(uri)
-      JSON.parse(res) unless res.nil?
+      begin
+        res = Net::HTTP.get(uri)
+      rescue => exception
+        puts exception.to_s
+      else
+        JSON.parse(res) unless res.nil?
+      end
+    end
+
+    def get_applications_json(id, params = {})
+      params = {}
+      params['access_token'] = EXPA.client.get_updated_token
+      params['person_id'] = id
+      params['page'] = 1 unless params.has_key?('page')
+      params['per_page'] = 25 unless params.has_key?('per_page')
+
+      uri = URI(url_get_all_applications_for(id))
+      uri.query = URI.encode_www_form(params)
+
+      begin
+        res = Net::HTTP.get(uri)
+      rescue => exception
+        puts exception.to_s
+      else
+        JSON.parse(res) unless res.nil?
+      end
     end
 
     def url_return_all_people

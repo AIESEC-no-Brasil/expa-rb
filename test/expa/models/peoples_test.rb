@@ -16,12 +16,16 @@ class PeoplesTest < Minitest::Test
     params['per_page'] = items_to_retrieve
     result = EXPA::Peoples.list_by_param(params)
     assert(result, 'No result')
+    assert(result.is_a?(Array), 'Wrong type returned')
+    assert(result[0].is_a?(People), 'Wront type returned')
     assert(result.count == items_to_retrieve, ' No result or wrong result. Expected ' + items_to_retrieve.to_s + ' and got ' + result.count.to_s)
 
     items_to_retrieve = 50
     params['per_page'] = items_to_retrieve
     result = EXPA::Peoples.list_by_param(params)
     assert(result, 'No result')
+    assert(result.is_a?(Array), 'Wrong type returned')
+    assert(result[0].is_a?(People), 'Wront type returned')
     assert(result.count == items_to_retrieve, ' No result or wrong result. Expected ' + items_to_retrieve.to_s + ' and got ' + result.count.to_s)
   end
 
@@ -30,11 +34,27 @@ class PeoplesTest < Minitest::Test
 
     items_to_retrieve = 1
     params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'matched'
     person_to_compare = EXPA::Peoples.list_by_param(params)[0]
 
     person_real = EXPA::Peoples.get_attributes(person_to_compare.id)
     assert(person_real, ' No result')
+    assert(person_real.is_a?(People), 'Wrong type returned')
     assert(person_real.id == person_to_compare.id, 'It is not the same register')
+  end
+
+  def test_list_applications_by_id
+    params = {}
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'in progress'
+    person = EXPA::Peoples.list_by_param(params)[0]
+
+    applications = EXPA::Peoples.list_applications_by_id(person.id)
+    assert(applications, ' No result')
+    assert(applications.is_a?(Array), ' Wront type returned')
+    assert(applications[0].is_a?(Application), 'Wront type returned')
   end
 
   def test_total_item

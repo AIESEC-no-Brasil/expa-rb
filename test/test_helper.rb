@@ -4,6 +4,8 @@ require 'expa'
 require 'expa/client'
 
 require 'expa/models/peoples'
+require 'expa/models/offices'
+require 'expa/models/applications'
 
 
 
