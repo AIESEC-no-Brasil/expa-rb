@@ -1,24 +1,40 @@
 require_relative 'offices'
 
 class People
+  attr_accessor :id
+  attr_accessor :email
+  attr_accessor :url
+  attr_accessor :first_name
+  attr_accessor :birthday_date
+  attr_accessor :full_name
+  attr_accessor :last_name
+  attr_accessor :profile_photo_url
+  attr_accessor :home_lc
+  attr_accessor :home_mc
+  attr_accessor :status
+  attr_accessor :interviewed
+  attr_accessor :phone
+  attr_accessor :location
+  attr_accessor :created_at
+  attr_accessor :updated_at
 
   def initialize(json)
-    @id = json['id'].to_i
-    @email = json['email']
-    @url = URI(json['url'])
-    @first_name = json['first_name']
-    @birthday_date = json['dob']
-    @full_name = json['full_name']
-    @last_name = json['last_name']
-    @profile_photo_url = URI(json['profile_photo_url'])
-    @home_lc = Office.new(json['home_lc'])
-    @home_mc = Office.new(json['home_mc'])
-    @status = json['status']
-    @interviewed = json['interviewed']
-    @phone = json['phone']
-    @location = json['location']
-    @created_at = Time.parse(json['created_at'])
-    @updated_at = Time.parse(json['updated_at'])
+    self.id = json['id'].to_i unless json['id'].nil?
+    self.email = json['email'] unless json['email'].nil?
+    self.url = URI(json['url']) unless json['url'].nil?
+    self.first_name = json['first_name'] unless json['first_name'].nil?
+    self.birthday_date = Date.parse(json['dob'],'%Y-%m-%d') unless json['dob'].nil?
+    self.full_name = json['full_name'] unless json['full_name'].nil?
+    self.last_name = json['last_name'] unless json['last_name'].nil?
+    self.profile_photo_url = URI(json['profile_photo_url']) unless json['profile_photo_url'].nil?
+    self.home_lc = Office.new(json['home_lc']) unless json['home_lc'].nil?
+    self.home_mc = Office.new(json['home_mc']) unless json['home_mc'].nil?
+    self.status = json['status'] unless json['status'].nil?
+    self.interviewed = json['interviewed'] unless json['interviewed'].nil?
+    self.phone = json['phone'] unless json['phone'].nil?
+    self.location = json['location'] unless json['location'].nil?
+    self.created_at = Time.parse(json['created_at']) unless json['created_at'].nil?
+    self.updated_at = Time.parse(json['updated_at']) unless json['updated_at'].nil?
   end
 end
 
@@ -42,7 +58,7 @@ module EXPA::Peoples
 
     def list
       peoples = []
-      params['per_page'] = 100
+      params = {'per_page' => 100}
       total_pages = self.total_items / params['per_page']
 
       for i in 1..total_pages
@@ -97,8 +113,8 @@ module EXPA::Peoples
 
     def find_json(params = {})
       params['access_token'] = EXPA.client.get_updated_token
-      params.has_key?('page') or params['page'] = 1
-      params.has_key?('per_page') or params['per_page'] = 25
+      params['page'] = 1 unless params.has_key?('page')
+      params['per_page'] = 25 unless params.has_key?('per_page')
 
       uri = URI (url_return_all_people)
       uri.query = URI.encode_www_form(params)
