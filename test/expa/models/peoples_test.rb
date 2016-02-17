@@ -61,4 +61,16 @@ class PeoplesTest < Minitest::Test
     total = EXPA::Peoples.total_items
     assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
   end
+
+  def test_total_applications
+    params = {}
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'in progress'
+    person = EXPA::Peoples.list_by_param(params)[0]
+
+    total = EXPA::Peoples.total_applications_from_person(person.id)
+    assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
+  end
 end
