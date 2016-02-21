@@ -77,7 +77,7 @@ class People
     self.views = json['views'] unless json['views'].nil?
     self.favourites_count = json['favourites_count'] unless json['favourites_count'].nil?
     self.contacted_at = Time.parse(json['contacted_at']) unless json['contacted_at'].nil?
-    self.contacted_by = EXPA::Peoples.find_by_id(json['contacted_by']) unless json['contacted_by'].nil?
+    #self.contacted_by = EXPA::Peoples.find_by_id(json['contacted_by']) unless json['contacted_by'].nil?
     self.gender = json['gender'] unless json['gender'].nil?
     self.address_info = json['address_info'] unless json['address_info'].nil? #TODO struct
     self.contact_info = json['contact_info'] unless json['contact_info'].nil? #TODO struct
@@ -116,11 +116,13 @@ module EXPA::Peoples
     def list
       peoples = []
       params = {'per_page' => 100}
-      total_pages = total_items / params['per_page'] + 1
+      total_pages = total_items / params['per_page']
+      total_pages + 1 if @total_items % params['per_page']
 
       for i in 1..total_pages
         params['page'] = i
         peoples.concat(list_by_param(params))
+        puts peoples
       end
 
       peoples
@@ -143,7 +145,8 @@ module EXPA::Peoples
       applications = []
 
       params = {'per_page' => 100}
-      total_pages = total_applications_from_person(id) / params['per_page'] + 1
+      total_pages = total_applications_from_person(id) / params['per_page']
+      total_pages + 1 if total_applications_from_person(id) % params['per_page']
 
       for i in 1..total_pages
         params['page'] = i

@@ -48,7 +48,7 @@ class PeoplesTest < Minitest::Test
 
     items_to_retrieve = 1
     params['per_page'] = items_to_retrieve
-    params['filters[status]'] = 'in progress'
+    params['filters[status]'] = 'realized'
     person = EXPA::Peoples.list_by_param(params)[0]
 
     applications = EXPA::Peoples.list_applications_by_id(person.id)

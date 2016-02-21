@@ -1,7 +1,7 @@
 module EXPA
   class Client
 
-    def initialize(options = {})
+    def initialize
       @url = 'https://auth.aiesec.org/users/sign_in'
       @token = nil
       @expiration_time = nil
@@ -21,6 +21,7 @@ module EXPA
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
       rescue => exception
         puts exception.to_s
+        false
       else
         if page.code.to_i == 200
           cj = agent.cookie_jar
@@ -28,6 +29,7 @@ module EXPA
             @token = cj.jar['experience.aiesec.org']['/']['expa_token'].value
             @expiration_time = cj.jar['experience.aiesec.org']['/']['expa_token'].created_at
             @max_age = cj.jar['experience.aiesec.org']['/']['expa_token'].max_age
+            true
           end
         end
       end

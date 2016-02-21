@@ -1,13 +1,19 @@
-require 'expa/version'
 require 'mechanize'
 require 'net/http'
+
+require 'expa/version'
+require 'expa/client'
+
+require 'expa/models/peoples'
+require 'expa/models/offices'
+require 'expa/models/applications'
 
 module EXPA
   class << self
     $url_api = 'https://gis-api.aiesec.org:443/v1/'
 
-    def setup(options={})
-      EXPA.client = EXPA::Client.new(options)
+    def setup
+      EXPA.client = EXPA::Client.new()
     end
 
     def client
