@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['marcus.carvalho@aiesec.net']
 
   spec.summary       = %q{This is an unofficial EXPA API developed by AIESEC in Brazil.}
-  spec.description   = %q{This is an unofficial AIESEC EXPA API developed by AIESEC in Brazil. Please consult the website on github.com/AIESEC-no-Brasil/expa-rb}
-  spec.homepage      = 'www.aiesec.org.br'
+  spec.description   = %q{This is an unofficial AIESEC EXPA API developed by AIESEC in Brazil. Please consult the website on github.com/AIESEC-no-Brasil/expa-rb.}
+  spec.homepage      = 'http://www.aiesec.org.br'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
