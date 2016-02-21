@@ -1,9 +1,15 @@
 class Office
+  attr_accessor :id
+  attr_accessor :name
+  attr_accessor :full_name
+  attr_accessor :url
+
+
   def initialize(json)
-    @id = json['id'].to_i
-    @name = json['name']
-    @full_name = json['full_name']
-    @url = URI(json['url'])
+    self.id = json['id'].to_i unless json['id'].nil?
+    self.name = json['name'] unless json['name'].nil?
+    self.full_name = json['full_name'] unless json['full_name'].nil?
+    self.url = URI(json['url']) unless json['url'].nil?
   end
 end
 
