@@ -117,7 +117,7 @@ module EXPA::Peoples
       peoples = []
       params = {'per_page' => 100}
       total_pages = total_items / params['per_page']
-      total_pages + 1 if @total_items % params['per_page']
+      total_pages = total_pages + 1 if @total_items % params['per_page'] > 0
 
       for i in 1..total_pages
         params['page'] = i
@@ -146,7 +146,7 @@ module EXPA::Peoples
 
       params = {'per_page' => 100}
       total_pages = total_applications_from_person(id) / params['per_page']
-      total_pages + 1 if total_applications_from_person(id) % params['per_page']
+      total_pages = total_pages + 1 if total_applications_from_person(id) % params['per_page'] > 0
 
       for i in 1..total_pages
         params['page'] = i
