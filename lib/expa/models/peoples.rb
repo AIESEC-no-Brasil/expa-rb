@@ -128,6 +128,40 @@ module EXPA::Peoples
       peoples
     end
 
+    def list_everyone_updated_after(time)
+      peoples = []
+      params = {'per_page' => 25, }
+      total_pages = total_items(params) / params['per_page']
+      total_pages = total_pages + 1 if @total_items % params['per_page'] > 0
+
+      for i in 1..total_pages
+        params['page'] = i
+        peoples.concat(list_by_param(params))
+        puts peoples
+      end
+
+      peoples
+    end
+
+    def list_everyone_created_after(time)
+      peoples = []
+      params = {'per_page' => 25}
+      total_pages = total_items(params) / params['per_page']
+      total_pages = total_pages + 1 if @total_items % params['per_page'] > 0
+
+      for i in 1..total_pages
+        params['page'] = i
+        peoples.concat(list_by_param(params))
+        break if peoples.last.created_at < time
+      end
+
+      peoples.delete_if do |person|
+        person.created_at < time
+      end
+
+      peoples
+    end
+
     def find_by_id(id)
       get_attributes(id)
     end
@@ -161,17 +195,17 @@ module EXPA::Peoples
       applications
     end
 
-    def total_items
+    def total_items(params = {})
       unless @total_items
-        res = list_json
+        res = list_json(params)
         @total_items = res['paging']['total_items'].to_i unless res.nil?
       end
       @total_items
     end
 
-    def total_applications_from_person(id)
+    def total_applications_from_person(id, params = {})
       unless @total_applications
-        res = get_applications_json(id)
+        res = get_applications_json(id, params)
         @total_applications = res['paging']['total_items'].to_i unless res.nil?
       end
       @total_applications
@@ -214,7 +248,6 @@ module EXPA::Peoples
     end
 
     def get_applications_json(id, params = {})
-      params = {}
       params['access_token'] = EXPA.client.get_updated_token
       params['person_id'] = id
       params['page'] = 1 unless params.has_key?('page')

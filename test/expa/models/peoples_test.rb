@@ -73,4 +73,32 @@ class PeoplesTest < Minitest::Test
     total = EXPA::Peoples.total_applications_from_person(person.id)
     assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
   end
+
+  def test_list_application_created_at
+    time_minus_five = Time.now - 5*60
+    time_minus_ten = Time.now - 10*60
+    time_minuts_twenty = Time.new - 20*60
+
+    people_five = EXPA::Peoples.list_everyone_created_after(time_minus_five)
+
+    people_five.each do |person|
+      assert(person.created_at >= time_minus_five, 'A register is older than ' + time_minus_five.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    people_ten = EXPA::Peoples.list_everyone_created_after(time_minus_ten)
+
+    people_ten.each do |person|
+      assert(person.created_at >= time_minus_ten, 'A register is older than ' + time_minus_ten.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    people_twenty = EXPA::Peoples.list_everyone_created_after(time_minuts_twenty)
+
+    people_twenty.each do |person|
+      assert(person.created_at >= time_minuts_twenty, 'A register is older than ' + time_minuts_twenty.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    assert(people_twenty.count >= people_ten.count, 'We have more younger registers (' + people_ten.count.to_s + ') than old ones(' + people_twenty.count.to_s + ')')
+    assert(people_ten.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_ten.count.to_s + ')')
+    assert(people_twenty.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_twenty.count.to_s + ')')
+  end
 end
