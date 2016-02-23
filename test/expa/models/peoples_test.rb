@@ -100,5 +100,32 @@ class PeoplesTest < Minitest::Test
     assert(people_twenty.count >= people_ten.count, 'We have more younger registers (' + people_ten.count.to_s + ') than old ones(' + people_twenty.count.to_s + ')')
     assert(people_ten.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_ten.count.to_s + ')')
     assert(people_twenty.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_twenty.count.to_s + ')')
+
+    params = {'filters[status]' =>'in progress'}
+
+    people_five_in_progress = EXPA::Peoples.list_everyone_created_after(time_minus_five, params)
+
+    people_five_in_progress.each do |person|
+      assert(person.created_at >= time_minus_five, 'A register is older than ' + time_minus_five.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    people_ten_in_progress = EXPA::Peoples.list_everyone_created_after(time_minus_ten, params)
+
+    people_ten_in_progress.each do |person|
+      assert(person.created_at >= time_minus_ten, 'A register is older than ' + time_minus_ten.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    people_twenty_in_progress = EXPA::Peoples.list_everyone_created_after(time_minuts_twenty,params)
+
+    people_twenty_in_progress.each do |person|
+      assert(person.created_at >= time_minuts_twenty, 'A register is older than ' + time_minuts_twenty.to_s + '. It is ' + person.created_at.to_s)
+    end
+
+    assert(people_five.first.id != people_five_in_progress.first.id, 'The list bought the same data for the general one (id=' + people_five.first.id.to_s + ') and in_progress one (id=' + people_five_in_progress.first.id.to_s + ')') unless people_five.empty? || people_five_in_progress.empty?
+    assert(people_ten.first.id != people_ten_in_progress.first.id, 'The list bought the same data for the general one (id=' + people_ten.first.id.to_s + ') and in_progress one (id=' + people_ten_in_progress.first.id.to_s + ')') unless people_ten.empty? || people_ten_in_progress.empty?
+    assert(people_twenty.first.id != people_twenty_in_progress.first.id, 'The list bought the same data for the general one (id=' + people_twenty.first.id.to_s + ') and in_progress one (id=' + people_twenty_in_progress.first.id.to_s + ')') unless people_twenty.empty? || people_twenty_in_progress.empty?
+    assert(people_twenty_in_progress.count >= people_ten_in_progress.count, 'We have more younger registers (' + people_ten_in_progress.count.to_s + ') than old ones(' + people_twenty_in_progress.count.to_s + ')')
+    assert(people_ten_in_progress.count >= people_five_in_progress.count, 'We have more younger registers (' + people_five_in_progress.count.to_s + ') than old ones(' + people_ten_in_progress.count.to_s + ')')
+    assert(people_twenty_in_progress.count >= people_five_in_progress.count, 'We have more younger registers (' + people_five_in_progress.count.to_s + ') than old ones(' + people_twenty_in_progress.count.to_s + ')')
   end
 end
