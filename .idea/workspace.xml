@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="41f7ca55-213e-43bc-8526-e03d9c5259f7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa.rb" afterPath="$PROJECT_DIR$/lib/expa.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa/models/peoples.rb" afterPath="$PROJECT_DIR$/lib/expa/models/peoples.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/expa/client_test.rb" afterPath="$PROJECT_DIR$/test/expa/client_test.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/expa/models/peoples_test.rb" afterPath="$PROJECT_DIR$/test/expa/models/peoples_test.rb" />
     </list>
     <ignored path="expa.iws" />
@@ -20,7 +22,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/expa@Unnamed.coverage" NAME="Test Rake Coverage Results" MODIFIED="1455224314509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
     <SUITE FILE_PATH="coverage/expa@All_tests_in_test__expa.coverage" NAME="All tests in test: expa Coverage Results" MODIFIED="1455214898883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="expa" />
-    <SUITE FILE_PATH="coverage/expa@Test_Rake.coverage" NAME="Test Rake Coverage Results" MODIFIED="1456256897248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
+    <SUITE FILE_PATH="coverage/expa@Test_Rake.coverage" NAME="Test Rake Coverage Results" MODIFIED="1456499173239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -31,11 +33,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="peoples_test.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="peoples_test.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/expa/models/peoples_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.5646389">
-              <caret line="125" column="267" selection-start-line="125" selection-start-column="267" selection-end-line="125" selection-end-column="267" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client_test.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/expa/client_test.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.042979944">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -45,7 +57,37 @@
         <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="7" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
+              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expa.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/expa.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="programmes.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/expa/models/programmes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,7 +116,6 @@
         <option value="$PROJECT_DIR$/lib/expa/active_expa/updatable.rb" />
         <option value="$PROJECT_DIR$/lib/expa/active_expa/base.rb" />
         <option value="$PROJECT_DIR$/lib/expa/models/people.rb" />
-        <option value="$PROJECT_DIR$/test/expa/client_test.rb" />
         <option value="$PROJECT_DIR$/lib/expa/models/applications.rb" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/expa.gemspec" />
@@ -82,10 +123,11 @@
         <option value="$PROJECT_DIR$/test/expa_test.rb" />
         <option value="$PROJECT_DIR$/lib/expa/client.rb" />
         <option value="$PROJECT_DIR$/test/test_helper.rb" />
-        <option value="$PROJECT_DIR$/lib/expa.rb" />
         <option value="$PROJECT_DIR$/lib/expa/version.rb" />
-        <option value="$PROJECT_DIR$/lib/expa/models/peoples.rb" />
         <option value="$PROJECT_DIR$/test/expa/models/peoples_test.rb" />
+        <option value="$PROJECT_DIR$/test/expa/client_test.rb" />
+        <option value="$PROJECT_DIR$/lib/expa/models/peoples.rb" />
+        <option value="$PROJECT_DIR$/lib/expa.rb" />
       </list>
     </option>
   </component>
@@ -586,16 +628,16 @@
       <option name="project" value="LOCAL" />
       <updated>1456254871885</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Como o EXPA ordena a sua list pelo campo &quot;created_at&quot; (parece que é isso mesmo, e não pelo campo &quot;updated_at&quot;), foi inserida uma função para listar perfis criados após tal horário&#10;&#10;E agora com filtragem">
+      <created>1456267370986</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1456267370986</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_Rake - 2016.02.23 at 16h 12m 21s.xml">
-      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_Rake - 2016.02.23 at 16h 13m 41s.xml">
-      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
-    </history-entry>
     <history-entry file="Test_Rake - 2016.02.23 at 16h 27m 09s.xml">
       <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
     </history-entry>
@@ -620,17 +662,23 @@
     <history-entry file="Test_Rake - 2016.02.23 at 16h 49m 25s.xml">
       <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
     </history-entry>
+    <history-entry file="Test_Rake - 2016.02.24 at 23h 35m 47s.xml">
+      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Test_Rake - 2016.02.26 at 12h 07m 50s.xml">
+      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18202417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17824773" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23480663" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23480663" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -688,14 +736,15 @@
     <MESSAGE value="correções para poder usar livremente como uma gema em outros projetos" />
     <MESSAGE value="refactor na hora de pegar todos os registros divididos entre várias páginas" />
     <MESSAGE value="Como o EXPA ordena a sua list pelo campo &quot;created_at&quot; (parece que é isso mesmo, e não pelo campo &quot;updated_at&quot;), foi inserida uma função para listar perfis criados após tal horário" />
-    <option name="LAST_COMMIT_MESSAGE" value="Como o EXPA ordena a sua list pelo campo &quot;created_at&quot; (parece que é isso mesmo, e não pelo campo &quot;updated_at&quot;), foi inserida uma função para listar perfis criados após tal horário" />
+    <MESSAGE value="Como o EXPA ordena a sua list pelo campo &quot;created_at&quot; (parece que é isso mesmo, e não pelo campo &quot;updated_at&quot;), foi inserida uma função para listar perfis criados após tal horário&#10;&#10;E agora com filtragem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Como o EXPA ordena a sua list pelo campo &quot;created_at&quot; (parece que é isso mesmo, e não pelo campo &quot;updated_at&quot;), foi inserida uma função para listar perfis criados após tal horário&#10;&#10;E agora com filtragem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="62" />
+      <option name="time" value="63" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -711,7 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="29" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -829,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="29" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -969,14 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CODE_OF_CONDUCT.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1019,32 +1057,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/programmes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/expa/version.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/expa/client_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="5" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -1055,18 +1071,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/programmes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/expa.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="7" selection-start-line="128" selection-start-column="7" selection-end-line="128" selection-end-column="7" />
+          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/expa/models/peoples_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.5646389">
-          <caret line="125" column="267" selection-start-line="125" selection-start-column="267" selection-end-line="125" selection-end-column="267" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/expa/client_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042979944">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>

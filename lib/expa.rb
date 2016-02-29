@@ -13,7 +13,9 @@ module EXPA
     $url_api = 'https://gis-api.aiesec.org:443/v1/'
 
     def setup
-      EXPA.client = EXPA::Client.new()
+      if EXPA.client.nil?
+        EXPA.client = EXPA::Client.new()
+      end
     end
 
     def client

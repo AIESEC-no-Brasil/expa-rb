@@ -82,10 +82,10 @@ class People
     self.address_info = json['address_info'] unless json['address_info'].nil? #TODO struct
     self.contact_info = json['contact_info'] unless json['contact_info'].nil? #TODO struct
     self.current_office = json['current_office'] unless json['current_office'].nil?
-    self.cv_info = json['cv_info'] unless json['cv_info'].nil?
+    self.cv_info = json['cv_info'].to_json unless json['cv_info'].nil?
     self.profile_photos_urls = json['profile_photos_urls'] unless json['profile_photos_urls'].nil?
     self.cover_photo_urls = URI(json['cover_photo_urls']) unless json['cover_photo_urls'].nil?
-    self.teams = json['teams'] unless json['teams'].nil?
+    self.teams = json['teams'] unless json['teams'].nil? #TODO struct
     self.positions = json['positions'] unless json['positions'].nil?
     self.profile = json['profile'] unless json['profile'].nil? #TODO struct
     self.academic_experience = json['academic_experience'] unless json['academic_experience'].nil? #TODO struct
@@ -94,7 +94,7 @@ class People
     self.missing_profile_fields = json['missing_profile_fields'] unless json['missing_profile_fields'].nil?
     self.nps_score = json['nps_score'] unless json['nps_score'].nil?
     self.current_experience = json['current_experience'] unless json['current_experience'].nil?
-    self.permissions = json['permissions'] unless json['permissions'].nil? #TODO struct
+    self.permissions = json['permissions'].to_json unless json['permissions'].nil? #TODO struct
   end
 end
 
@@ -113,7 +113,7 @@ module EXPA::Peoples
       peoples
     end
 
-    def list
+    def list_all
       peoples = []
       params = {'per_page' => 100}
       total_pages = total_items / params['per_page']
