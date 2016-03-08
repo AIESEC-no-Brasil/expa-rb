@@ -38,13 +38,13 @@ module EXPA
     def get_updated_token
       nil if @email.nil? || @password.nil?
 
-      time = (@expiration_time + (@max_age/2))
+      time = (self.get_expiration_time + (self.get_max_age/2))
 
       if (Time.now < time)
-        @token
+        self.get_token
       else
         auth(@email, @password)
-        @token
+        self.get_token
       end
     end
 
@@ -57,6 +57,7 @@ module EXPA
     end
 
     def get_max_age
+      @max_age = 1800 if @max_age.nil?
       @max_age
     end
   end
