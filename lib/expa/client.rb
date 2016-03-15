@@ -53,6 +53,7 @@ module EXPA
     end
 
     def get_expiration_time
+      @expiration_time = Time.now + 60 if @expiration_time.nil?
       @expiration_time
     end
 
