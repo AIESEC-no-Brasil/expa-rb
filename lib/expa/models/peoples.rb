@@ -117,7 +117,7 @@ module EXPA::Peoples
       peoples = []
       params = {'per_page' => 100}
       total_pages = total_items / params['per_page']
-      total_pages = total_pages + 1 if @total_items % params['per_page'] > 0
+      total_pages = total_pages + 1 if total_items % params['per_page'] > 0
 
       for i in 1..total_pages
         params['page'] = i
@@ -131,8 +131,8 @@ module EXPA::Peoples
     def list_everyone_created_after(time, params = {})
       peoples = []
       params['per_page'] = 25
-      total_pages = total_items(params) / params['per_page']
-      total_pages = total_pages + 1 if @total_items % params['per_page'] > 0
+      total_pages = total_items / params['per_page']
+      total_pages = total_pages + 1 if total_items % params['per_page'] > 0
 
       for i in 1..total_pages
         params['page'] = i
