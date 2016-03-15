@@ -181,7 +181,7 @@ module EXPA::Peoples
     end
 
     def total_items(params = {})
-      unless @total_items
+      if @total_items.nil?
         res = list_json(params)
         @total_items = res['paging']['total_items'].to_i unless res.nil?
       end
@@ -189,7 +189,7 @@ module EXPA::Peoples
     end
 
     def total_applications_from_person(id, params = {})
-      unless @total_applications
+      if @total_applications.nil?
         res = get_applications_json(id, params)
         @total_applications = res['paging']['total_items'].to_i unless res.nil?
       end

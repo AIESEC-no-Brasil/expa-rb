@@ -1,11 +1,13 @@
 require 'test_helper'
 
-
-
 class ClientTest < Minitest::Test
   def setup
-    @expa = EXPA.setup()
-    @expa.auth('robozinhomcbazi@gmail.com','mcmosaico4ever123')
+    if EXPA.client.nil?
+      @expa = EXPA.setup()
+      @expa.auth(ENV['ROBOZINHO_EMAIL'],ENV['ROBOZINHO_PASSWORD'])
+    else
+      @expa = EXPA.client
+    end
   end
 
   def test_auth

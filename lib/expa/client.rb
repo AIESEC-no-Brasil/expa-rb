@@ -4,14 +4,14 @@ module EXPA
     def initialize
       @url = 'https://auth.aiesec.org/users/sign_in'
       @token = nil
-      @expiration_time = nil
-      @max_age = nil
+      @expiration_time = Time.now + 60
+      @max_age = 1800
     end
 
     def auth(email, password)
       @email = email
       @password = password
-      agent = Mechanize.new
+      agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
       page = agent.get(@url)
       aiesec_form = page.form()
       aiesec_form.field_with(:name => 'user[email]').value = @email
@@ -53,12 +53,10 @@ module EXPA
     end
 
     def get_expiration_time
-      @expiration_time = Time.now + 60 if @expiration_time.nil?
       @expiration_time
     end
 
     def get_max_age
-      @max_age = 1800 if @max_age.nil?
       @max_age
     end
   end
