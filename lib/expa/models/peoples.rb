@@ -51,7 +51,7 @@ class People
   def initialize(json)
     #TODO: Certify every field is receiving the right information type when getting attributes
     # Data that comes at the lists
-    self.id = json['id'].to_i unless json['id'].nil?
+    self.id = json['id'] unless json['id'].nil?
     self.email = json['email'] unless json['email'].nil?
     self.url = URI(json['url']) unless json['url'].nil?
     self.first_name = json['first_name'] unless json['first_name'].nil?
@@ -181,19 +181,13 @@ module EXPA::Peoples
     end
 
     def total_items(params = {})
-      if @total_items.nil?
-        res = list_json(params)
-        @total_items = res['paging']['total_items'].to_i unless res.nil?
-      end
-      @total_items
+      res = list_json(params)
+      res['paging']['total_items'].to_i unless res.nil?
     end
 
     def total_applications_from_person(id, params = {})
-      if @total_applications.nil?
-        res = get_applications_json(id, params)
-        @total_applications = res['paging']['total_items'].to_i unless res.nil?
-      end
-      @total_applications
+      res = get_applications_json(id, params)
+      res['paging']['total_items'].to_i unless res.nil?
     end
 
     private

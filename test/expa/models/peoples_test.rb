@@ -75,6 +75,7 @@ class PeoplesTest < Minitest::Test
     person = EXPA::Peoples.list_by_param(params)[0]
 
     total = EXPA::Peoples.total_applications_from_person(person.id)
+    assert(total > 0, 'There is zero applications')
     assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
   end
 

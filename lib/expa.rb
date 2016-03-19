@@ -4,9 +4,11 @@ require 'net/http'
 require 'expa/version'
 require 'expa/client'
 
-require 'expa/models/peoples'
-require 'expa/models/offices'
 require 'expa/models/applications'
+require 'expa/models/offices'
+require 'expa/models/opportunities'
+require 'expa/models/peoples'
+require 'expa/models/programmes'
 
 module EXPA
   class << self
