@@ -4,8 +4,8 @@ module EXPA
     def initialize
       @url = 'https://auth.aiesec.org/users/sign_in'
       @token = nil
-      @expiration_time = Time.now + 60
-      @max_age = 1800
+      @max_age = nil
+      @expiration_time = nil
     end
 
     def auth(email, password)
@@ -24,11 +24,15 @@ module EXPA
         false
       else
         if page.code.to_i == 200
-          cj = agent.cookie_jar
-          if !cj.jar['experience.aiesec.org'].nil?
-            @token = cj.jar['experience.aiesec.org']['/']['expa_token'].value
-            @expiration_time = cj.jar['experience.aiesec.org']['/']['expa_token'].created_at
-            @max_age = cj.jar['experience.aiesec.org']['/']['expa_token'].max_age
+          cj = page.mech.agent.cookie_jar.store
+          index = cj.count
+          for i in 0...index
+            index = i if cj.to_a[i].domain == 'experience.aiesec.org'
+          end
+          if index != cj.count
+            @token = cj.to_a[index].value
+            @expiration_time = cj.to_a[index].created_at
+            @max_age = cj.to_a[index].max_age
             true
           end
         end
@@ -53,10 +57,12 @@ module EXPA
     end
 
     def get_expiration_time
+      @expiration_time = Time.now + 60 if @expiration_time.nil?
       @expiration_time
     end
 
     def get_max_age
+      @max_age = 1800 if @max_age.nil?
       @max_age
     end
   end

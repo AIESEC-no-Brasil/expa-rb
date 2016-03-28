@@ -23,14 +23,18 @@ class Opportunity
     self.url = URI(json['url']) unless json['url'].nil?
     self.status = json['status'] unless json['status'].nil?
     self.location = json['location'] unless json['location'].nil?
-    programmes_temp = []
-    json['programmes'].each do |programme|
-      programmes_temp << Programme.new(programme)
+    unless json['programmes'].nil?
+      programmes_temp = []
+      json['programmes'].each do |programme|
+        programmes_temp << Programme.new(programme)
+      end
+      self.programmes = programmes_temp
     end
-    self.programmes = programmes_temp
-    managers = []
-    json['managers'].each do |manager|
-      managers << manager['id']
+    unless json['managers'].nil?
+      managers = []
+      json['managers'].each do |manager|
+        managers << manager['id']
+      end
     end
     self.managers_ids = managers unless json['managers'].nil?
     self.office = Office.new(json['office']) unless json['office'].nil?

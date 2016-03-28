@@ -1,7 +1,7 @@
 require_relative 'offices'
 require_relative 'applications'
 
-class People
+class Person
   # Data that comes at the lists
   attr_accessor :id
   attr_accessor :email
@@ -107,7 +107,7 @@ module EXPA::Peoples
       data = res['data'] unless res.nil?
 
       data.each do |item|
-        peoples << People.new(item)
+        peoples << Person.new(item)
       end
 
       peoples
@@ -116,13 +116,13 @@ module EXPA::Peoples
     def list_all
       peoples = []
       params = {'per_page' => 100}
-      total_pages = total_items / params['per_page']
-      total_pages = total_pages + 1 if total_items % params['per_page'] > 0
+      items = total_items
+      total_pages = items / params['per_page']
+      total_pages = total_pages + 1 if items % params['per_page'] > 0
 
-      for i in 1..total_pages
+      for i in 1...total_pages
         params['page'] = i
         peoples.concat(list_by_param(params))
-        puts peoples
       end
 
       peoples
@@ -153,7 +153,7 @@ module EXPA::Peoples
 
     def get_attributes(id)
       res = get_attribute_json(id)
-      People.new(res) unless res.nil?
+      Person.new(res) unless res.nil?
     end
 
     def list_applications_by_id(id)
