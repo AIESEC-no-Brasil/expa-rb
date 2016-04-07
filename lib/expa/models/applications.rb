@@ -14,6 +14,14 @@ class Application
   attr_accessor :opportunity
   attr_accessor :interviewed
   attr_accessor :person
+  attr_accessor :paid
+  attr_accessor :an_signed_at
+  attr_accessor :experience_start_date
+  attr_accessor :experience_end_date
+  attr_accessor :matched_or_rejected_at
+  attr_accessor :date_matched
+  attr_accessor :date_realized
+  attr_accessor :date_completed
 
   def initialize(json)
     self.id = json['id'].to_i unless json['id'].nil?
@@ -27,20 +35,30 @@ class Application
     self.updated_at = Time.parse(json['updated_at']) unless json['updated_at'].nil?
     self.opportunity = Opportunity.new(json['opportunity']) unless json['opportunity'].nil?
     self.interviewed = json['interviewed'] unless json['interviewed'].nil?
+    self.paid = json['paid'] unless json['paid'].nil? #novo
     #self.paid_at
     #self.paid_by
     self.person = Person.new(json['person']) unless json['person'].nil?
     #self.branch # TODO Struct
-    #self.an_signed_at
-    #self.experience_start_date
-    #self.experience_end_date
-    #self.matched_or_rejected_at
+    self.an_signed_at = Time.parse(json['an_signed_at']) unless json['an_signed_at'].nil? #novo
+    self.experience_start_date = Time.parse(json['experience_start_date']) unless json['experience_start_date'].nil? #novo
+    self.experience_end_date = Time.parse(json['experience_end_date']) unless json['experience_end_date'].nil? #novo
+    self.matched_or_rejected_at = Time.parse(json['matched_or_rejected_at']) unless json['matched_or_rejected_at'].nil? #novo
+    unless json['meta'].nil?
+      meta = json['meta']
+      self.date_matched = Time.parse(meta['date_matched']) unless meta['date_matched'].nil? #novo
+      self.date_realized = Time.parse(meta['date_realized']) unless meta['date_realized'].nil? #novo
+      self.date_completed = Time.parse(meta['date_completed']) unless meta['date_completed'].nil? #novo
+      self.date_ldm_completed = Time.parse(meta['date_ldm_completed']) unless meta['date_ldm_completed'].nil? #novo
+    end
+
     #self.meta
   end
 end
 
 module EXPA::Applications
   class << self
+    #EXPA only accepts the following filters['status']: 'matched' (accepted), 'accepted' (in progress), 'approved' (approved), 'realized' (realized), 'completed' (completed), 'withdrawn' (withdrawn), 'rejected' (rejected), 'declined' (declined)
     def list_by_param(params = {})
       applications = []
 

@@ -100,6 +100,7 @@ end
 
 module EXPA::Peoples
   class << self
+    #EXPA only accepts the following filters['status']: 'open', 'in progress', 'matched', 'realized', 'completed'
     def list_by_param(params = {})
       peoples = []
 
@@ -113,6 +114,7 @@ module EXPA::Peoples
       peoples
     end
 
+    # This method was not tested because it would take too long to download the whole peoples database from EXPA. But this methods uses other methods that are tested
     def list_all
       peoples = []
       params = {'per_page' => 100}

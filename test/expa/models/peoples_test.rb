@@ -21,7 +21,7 @@ class PeoplesTest < Minitest::Test
     result = EXPA::Peoples.list_by_param(params)
     assert(result, 'No result')
     assert(result.is_a?(Array), 'Wrong type returned')
-    assert(result[0].is_a?(Person), 'Wront type returned')
+    assert(result.first.is_a?(Person), 'Wront type returned')
     assert(result.count == items_to_retrieve, ' No result or wrong result. Expected ' + items_to_retrieve.to_s + ' and got ' + result.count.to_s)
 
     items_to_retrieve = 50
@@ -52,13 +52,43 @@ class PeoplesTest < Minitest::Test
 
     items_to_retrieve = 1
     params['per_page'] = items_to_retrieve
-    params['filters[status]'] = 'realized'
-    person = EXPA::Peoples.list_by_param(params)[0]
+    params['filters[status]'] = 'in progress'
+    person = EXPA::Peoples.list_by_param(params).first
 
     applications = EXPA::Peoples.list_applications_by_id(person.id)
     assert(applications, ' No result')
     assert(applications.is_a?(Array), ' Wront type returned')
-    assert(applications[0].is_a?(Application), 'Wront type returned')
+    assert(applications.first.is_a?(Application), 'Wrong type returned')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'matched'
+    person = EXPA::Peoples.list_by_param(params).first
+
+    applications = EXPA::Peoples.list_applications_by_id(person.id)
+    assert(applications, ' No result')
+    assert(applications.is_a?(Array), ' Wront type returned')
+    assert(applications.first.is_a?(Application), 'Wrong type returned')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'realized'
+    person = EXPA::Peoples.list_by_param(params).first
+
+    applications = EXPA::Peoples.list_applications_by_id(person.id)
+    assert(applications, ' No result')
+    assert(applications.is_a?(Array), ' Wront type returned')
+    assert(applications.first.is_a?(Application), 'Wrong type returned')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'completed'
+    person = EXPA::Peoples.list_by_param(params).first
+
+    applications = EXPA::Peoples.list_applications_by_id(person.id)
+    assert(applications, ' No result')
+    assert(applications.is_a?(Array), ' Wront type returned')
+    assert(applications.first.is_a?(Application), 'Wrong type returned')
   end
 
   def test_total_item
@@ -75,8 +105,35 @@ class PeoplesTest < Minitest::Test
     person = EXPA::Peoples.list_by_param(params)[0]
 
     total = EXPA::Peoples.total_applications_from_person(person.id)
-    assert(total > 0, 'There is zero applications')
     assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
+    assert(total > 0, 'There is zero applications')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'matched'
+    person = EXPA::Peoples.list_by_param(params)[0]
+
+    total = EXPA::Peoples.total_applications_from_person(person.id)
+    assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
+    assert(total > 0, 'There is zero applications')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'realized'
+    person = EXPA::Peoples.list_by_param(params)[0]
+
+    total = EXPA::Peoples.total_applications_from_person(person.id)
+    assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
+    assert(total > 0, 'There is zero applications')
+
+    items_to_retrieve = 1
+    params['per_page'] = items_to_retrieve
+    params['filters[status]'] = 'completed'
+    person = EXPA::Peoples.list_by_param(params)[0]
+
+    total = EXPA::Peoples.total_applications_from_person(person.id)
+    assert(total.is_a?(Integer), 'Total of item is not a number or is not working')
+    assert(total > 0, 'There is zero applications')
   end
 
   def test_list_application_created_at
@@ -106,7 +163,7 @@ class PeoplesTest < Minitest::Test
     assert(people_ten.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_ten.count.to_s + ')')
     assert(people_twenty.count >= people_five.count, 'We have more younger registers (' + people_five.count.to_s + ') than old ones(' + people_twenty.count.to_s + ')')
 
-    params = {'filters[status]' =>'in progress'}
+    params = {'filters[status]' => 'in progress'}
 
     people_five_in_progress = EXPA::Peoples.list_everyone_created_after(time_minus_five, params)
 
