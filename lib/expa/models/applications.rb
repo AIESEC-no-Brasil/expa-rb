@@ -22,6 +22,7 @@ class Application
   attr_accessor :date_matched
   attr_accessor :date_realized
   attr_accessor :date_completed
+  attr_accessor :date_ldm_completed
 
   def initialize(json)
     self.id = json['id'].to_i unless json['id'].nil?
