@@ -1,3 +1,4 @@
+require_relative 'current_position'
 require_relative 'offices'
 
 class Person
@@ -46,6 +47,9 @@ class Person
   attr_accessor :nps_score
   attr_accessor :current_experience
   attr_accessor :permissions
+  attr_accessor :current_position
+
+
 
   def initialize(json)
     #TODO: Certify every field is receiving the right information type when getting attributes
@@ -94,6 +98,7 @@ class Person
     self.nps_score = json['nps_score'] unless json['nps_score'].nil?
     self.current_experience = json['current_experience'] unless json['current_experience'].nil?
     self.permissions = json['permissions'].to_json unless json['permissions'].nil? #TODO struct
+    self.current_position = CurrentPosition.new(json['current_position']) unless json['current_position'].nil?
   end
 end
 
