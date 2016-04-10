@@ -190,4 +190,5 @@ class PeoplesTest < Minitest::Test
     assert(people_ten_in_progress.count >= people_five_in_progress.count, 'We have more younger registers (' + people_five_in_progress.count.to_s + ') than old ones(' + people_ten_in_progress.count.to_s + ')')
     assert(people_twenty_in_progress.count >= people_five_in_progress.count, 'We have more younger registers (' + people_five_in_progress.count.to_s + ') than old ones(' + people_twenty_in_progress.count.to_s + ')')
   end
+
 end

@@ -9,6 +9,7 @@ require 'expa/models/offices'
 require 'expa/models/opportunities'
 require 'expa/models/peoples'
 require 'expa/models/programmes'
+require 'expa/models/current_person'
 
 module EXPA
   class << self

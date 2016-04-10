@@ -1,5 +1,4 @@
 require_relative 'offices'
-require_relative 'applications'
 
 class Person
   # Data that comes at the lists
