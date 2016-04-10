@@ -1,5 +1,5 @@
 require_relative 'programmes'
-require_relative 'peoples'
+require_relative 'people'
 require_relative 'offices'
 
 class Opportunity

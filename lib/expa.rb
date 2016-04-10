@@ -7,7 +7,7 @@ require 'expa/client'
 require 'expa/models/applications'
 require 'expa/models/offices'
 require 'expa/models/opportunities'
-require 'expa/models/peoples'
+require 'expa/models/people'
 require 'expa/models/programmes'
 require 'expa/models/current_person'
 

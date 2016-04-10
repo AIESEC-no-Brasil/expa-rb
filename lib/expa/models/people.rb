@@ -97,7 +97,7 @@ class Person
   end
 end
 
-module EXPA::Peoples
+module EXPA::People
   class << self
     #EXPA only accepts the following filters['status']: 'open', 'in progress', 'matched', 'realized', 'completed'
     def list_by_param(params = {})

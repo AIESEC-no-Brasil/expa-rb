@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41f7ca55-213e-43bc-8526-e03d9c5259f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/expa/models/current_person_test.rb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/expa/models/peoples.rb" afterPath="$PROJECT_DIR$/lib/expa/models/people.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa.rb" afterPath="$PROJECT_DIR$/lib/expa.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa/models/current_person.rb" afterPath="$PROJECT_DIR$/lib/expa/models/current_person.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa/models/peoples.rb" afterPath="$PROJECT_DIR$/lib/expa/models/peoples.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/expa/models/opportunities.rb" afterPath="$PROJECT_DIR$/lib/expa/models/opportunities.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/expa/models/peoples_test.rb" afterPath="$PROJECT_DIR$/test/expa/models/peoples_test.rb" />
     </list>
     <ignored path="expa.iws" />
@@ -24,7 +23,7 @@
     <SUITE FILE_PATH="coverage/expa@Unnamed.coverage" NAME="Test Rake Coverage Results" MODIFIED="1455224314509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
     <SUITE FILE_PATH="coverage/expa@All_tests_in_test__expa.coverage" NAME="All tests in test: expa Coverage Results" MODIFIED="1455214898883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" MODULE_NAME="expa" />
     <SUITE FILE_PATH="coverage/expa@test_find_attributes_by_id__expa.coverage" NAME="test_find_attributes_by_id: expa Coverage Results" MODIFIED="1459990071357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/expa/models" MODULE_NAME="expa" />
-    <SUITE FILE_PATH="coverage/expa@Test_Rake.coverage" NAME="Test Rake Coverage Results" MODIFIED="1460265437498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
+    <SUITE FILE_PATH="coverage/expa@Test_Rake.coverage" NAME="Test Rake Coverage Results" MODIFIED="1460266129633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="expa" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -35,81 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="current_person.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/expa/models/current_person.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expa.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/expa.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="current_person_test.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/expa/models/current_person_test.rb">
+      <file leaf-file-name="people.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/expa/models/people.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.4090909">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_helper.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client_test.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/expa/client_test.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/minitest-5.8.4/lib/minitest/test.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expa_test.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/expa_test.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="peoples.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+              <caret line="99" column="16" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -119,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/test/expa/models/peoples_test.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="10" selection-end-column="5" />
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -148,7 +77,6 @@
         <option value="$PROJECT_DIR$/test/expa/ClientTest.rb" />
         <option value="$PROJECT_DIR$/lib/expa/active_expa/updatable.rb" />
         <option value="$PROJECT_DIR$/lib/expa/active_expa/base.rb" />
-        <option value="$PROJECT_DIR$/lib/expa/models/people.rb" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/expa.gemspec" />
         <option value="$PROJECT_DIR$/lib/expa/models/offices.rb" />
@@ -166,6 +94,7 @@
         <option value="$PROJECT_DIR$/lib/expa.rb" />
         <option value="$PROJECT_DIR$/lib/expa/models/peoples.rb" />
         <option value="$PROJECT_DIR$/lib/expa/models/current_person.rb" />
+        <option value="$PROJECT_DIR$/lib/expa/models/people.rb" />
       </list>
     </option>
   </component>
@@ -725,16 +654,16 @@
       <option name="project" value="LOCAL" />
       <updated>1459991730479</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Current Person">
+      <created>1460265517859</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1460265517862</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_Rake - 2016.04.06 at 20h 52m 28s.xml">
-      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_Rake - 2016.04.06 at 20h 54m 36s.xml">
-      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
-    </history-entry>
     <history-entry file="Test_Rake - 2016.04.06 at 21h 07m 13s.xml">
       <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
     </history-entry>
@@ -756,6 +685,12 @@
     <history-entry file="Test_Rake - 2016.04.06 at 21h 53m 45s.xml">
       <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
     </history-entry>
+    <history-entry file="Test_Rake - 2016.04.10 at 02h 20m 37s.xml">
+      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Test_Rake - 2016.04.10 at 02h 31m 20s.xml">
+      <configuration name="Test Rake" configurationId="RakeRunConfigurationType" />
+    </history-entry>
     <history-entry file="test_find_attributes_by_id__expa - 2016.04.06 at 21h 47m 53s.xml">
       <configuration name="test_find_attributes_by_id: expa" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
@@ -766,8 +701,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2212991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872927" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23066299" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -775,12 +712,10 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35359117" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872927" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -836,7 +771,8 @@
     <MESSAGE value="Applications + Refactor People + Ajuste nos cookies" />
     <MESSAGE value="primeiro TDD do Luan" />
     <MESSAGE value="corrigindo o TDD do Luan" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrigindo o TDD do Luan" />
+    <MESSAGE value="Current Person" />
+    <option name="LAST_COMMIT_MESSAGE" value="Current Person" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -890,7 +826,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/people.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="168" column="42" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="42" />
@@ -954,7 +890,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/people.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="168" column="42" selection-start-line="168" selection-start-column="8" selection-end-line="168" selection-end-column="42" />
@@ -997,7 +933,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/people.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1174,34 +1110,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/expa/models/peoples_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/expa.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/peoples.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/expa/models/current_person.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1216,8 +1128,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/expa/models/current_person_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4090909">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/current_person.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/expa/models/peoples_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/expa/models/people.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4090909">
+          <caret line="99" column="16" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="19" />
           <folding />
         </state>
       </provider>
