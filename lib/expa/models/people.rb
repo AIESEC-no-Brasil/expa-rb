@@ -80,7 +80,7 @@ class Person
     self.gender = json['gender'] unless json['gender'].nil?
     self.address_info = json['address_info'] unless json['address_info'].nil? #TODO struct
     self.contact_info = json['contact_info'] unless json['contact_info'].nil? #TODO struct
-    self.current_office = json['current_office'] unless json['current_office'].nil?
+    self.current_office = Office.new(json['current_office']) unless json['current_office'].nil?
     self.cv_info = json['cv_info'].to_json unless json['cv_info'].nil?
     self.profile_photos_urls = json['profile_photos_urls'] unless json['profile_photos_urls'].nil?
     self.cover_photo_urls = URI(json['cover_photo_urls']) unless json['cover_photo_urls'].nil?
