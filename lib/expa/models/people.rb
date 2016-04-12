@@ -206,13 +206,7 @@ module EXPA::People
       uri = URI(url_return_all_people)
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def get_attribute_json(id)
@@ -223,13 +217,7 @@ module EXPA::People
       uri = URI(url_view_person_attributes(id))
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def get_applications_json(id, params = {})
@@ -241,13 +229,7 @@ module EXPA::People
       uri = URI(url_get_all_applications_for(id))
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def url_return_all_people
@@ -260,6 +242,21 @@ module EXPA::People
 
     def url_get_all_applications_for(id)
       url_view_person_attributes(id) + '/applications'
+    end
+
+    def force_get_response(uri)
+      i = 0
+      while i < 1000
+        begin
+          res = Net::HTTP.get(uri)
+          res = JSON.parse(res) unless res.nil?
+          i = 1000
+        rescue => exception
+          puts exception.to_s
+          sleep(i)
+        end
+      end
+      res
     end
   end
 end

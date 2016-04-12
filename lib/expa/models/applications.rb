@@ -112,13 +112,7 @@ module EXPA::Applications
       uri = URI(url_return_all_applications)
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def get_attribute_json(id)
@@ -129,13 +123,7 @@ module EXPA::Applications
       uri = URI(url_view_application_attributes(id))
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def url_return_all_applications
@@ -144,6 +132,21 @@ module EXPA::Applications
 
     def url_view_application_attributes(id)
       url_return_all_applications + '/' + id.to_s
+    end
+
+    def force_get_response(uri)
+      i = 0
+      while i < 1000
+        begin
+          res = Net::HTTP.get(uri)
+          res = JSON.parse(res) unless res.nil?
+          i = 1000
+        rescue => exception
+          puts exception.to_s
+          sleep(i)
+        end
+      end
+      res
     end
   end
 end

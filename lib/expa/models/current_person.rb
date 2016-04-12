@@ -15,17 +15,26 @@ module EXPA::CurrentPerson
       uri = URI(url_current_person)
       uri.query = URI.encode_www_form(params)
 
-      begin
-        res = Net::HTTP.get(uri)
-      rescue => exception
-        puts exception.to_s
-      else
-        JSON.parse(res) unless res.nil?
-      end
+      force_get_response(uri)
     end
 
     def url_current_person
       $url_api + 'current_person'
+    end
+
+    def force_get_response(uri)
+      i = 0
+      while i < 1000
+        begin
+          res = Net::HTTP.get(uri)
+          res = JSON.parse(res) unless res.nil?
+          i = 1000
+        rescue => exception
+          puts exception.to_s
+          sleep(i)
+        end
+      end
+      res
     end
   end
 end
