@@ -249,11 +249,11 @@ module EXPA::People
 
     def force_get_response(uri)
       i = 0
-      while i < 1000
+      while i < 10
         begin
           res = Net::HTTP.get(uri)
           res = JSON.parse(res) unless res.nil?
-          i = 1000
+          i = 10
         rescue => exception
           puts exception.to_s
           sleep(i)
