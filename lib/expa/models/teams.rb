@@ -15,7 +15,8 @@ class Team
   end
 
 end
-module Teams
+
+module EXPA::Teams
   class << self
 
   end

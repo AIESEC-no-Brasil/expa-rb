@@ -13,6 +13,7 @@ class CurrentPersonTest < Minitest::Test
   def test_get_person
     result = EXPA::CurrentPerson.get_current_person
     assert(result, 'No result')
+    assert(result.email = 'robozinhomcbazi@gmail.com', 'ops')
     assert(result.is_a?(Person), 'Wront type returned')
   end
 end
