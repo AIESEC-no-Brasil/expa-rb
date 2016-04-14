@@ -99,9 +99,6 @@ class Person
     self.current_experience = json['current_experience'] unless json['current_experience'].nil?
     self.permissions = json['permissions'].to_json unless json['permissions'].nil? #TODO struct
     self.current_position = CurrentPosition.new(json['current_position']) unless json['current_position'].nil?
-    unless self.current_position.nil?
-      puts 'oi'
-    end
   end
 end
 

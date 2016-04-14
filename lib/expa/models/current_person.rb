@@ -2,8 +2,14 @@ module EXPA::CurrentPerson
   class << self
     def get_current_person
       res = get_json
-      data = res['person'] unless res.nil?
-      Person.new(data) unless data.nil?
+      unless res.nil?
+        if res.include?('person')
+          res['person'].merge!( {'current_office' => res['current_office'] }) if res.include?('current_office')
+          res['person'].merge!( {'current_position' => res['current_position'] }) if res.include?('current_position')
+          res['person'].merge!( {'current_teams' => res['current_teams'] }) if res.include?('current_teams')
+          Person.new(res['person'])
+        end
+      end
     end
 
     private
