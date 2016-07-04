@@ -101,7 +101,29 @@ module EXPA::Applications
       Application.new(res) unless res.nil?
     end
 
-    def analytics(params = {})
+    def total_items(params = {})
+      res = list_json(params)
+      res['paging']['total_items'].to_i unless res.nil?
+    end
+
+    def retorna()
+      analisa
+    end
+
+    private
+
+    def list_json(params = {})
+      params['access_token'] = EXPA.client.get_updated_token
+      params['page'] = 1 unless params.has_key?('page')
+      params['per_page'] = 25 unless params.has_key?('per_page')
+
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
+    def analisa(params = {})
       params['access_token'] = EXPA.client.get_updated_token
       params['start_date'] = Date.now unless params.has_key?('start_date')
       params['end_date'] = Date.now unless params.has_key?('end_date')
@@ -134,24 +156,6 @@ module EXPA::Applications
       result['iGIP'] = force_get_response(uri)
 
       result
-    end
-
-    def total_items(params = {})
-      res = list_json(params)
-      res['paging']['total_items'].to_i unless res.nil?
-    end
-
-    private
-
-    def list_json(params = {})
-      params['access_token'] = EXPA.client.get_updated_token
-      params['page'] = 1 unless params.has_key?('page')
-      params['per_page'] = 25 unless params.has_key?('per_page')
-
-      uri = URI(url_return_all_applications)
-      uri.query = URI.encode_www_form(params)
-
-      force_get_response(uri)
     end
 
     def get_attribute_json(id)
