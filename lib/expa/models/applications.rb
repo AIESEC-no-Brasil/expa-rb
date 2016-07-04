@@ -101,11 +101,6 @@ module EXPA::Applications
       Application.new(res) unless res.nil?
     end
 
-    def total_items(params = {})
-      res = list_json(params)
-      res['paging']['total_items'].to_i unless res.nil?
-    end
-
     def get_analytics(params = {})
       params['access_token'] = EXPA.client.get_updated_token
       params['start_date'] = Date.now unless params.has_key?('start_date')
@@ -139,6 +134,11 @@ module EXPA::Applications
       result['iGIP'] = force_get_response(uri)
 
       result
+    end
+
+    def total_items(params = {})
+      res = list_json(params)
+      res['paging']['total_items'].to_i unless res.nil?
     end
 
     private
