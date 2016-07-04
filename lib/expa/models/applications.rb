@@ -101,7 +101,7 @@ module EXPA::Applications
       Application.new(res) unless res.nil?
     end
 
-    def get_analytics(params = {})
+    def analytics(params = {})
       params['access_token'] = EXPA.client.get_updated_token
       params['start_date'] = Date.now unless params.has_key?('start_date')
       params['end_date'] = Date.now unless params.has_key?('end_date')
