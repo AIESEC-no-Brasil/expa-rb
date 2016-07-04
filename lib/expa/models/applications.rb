@@ -115,6 +115,41 @@ module EXPA::Applications
       force_get_response(uri)
     end
 
+    def get_analytics(params = {})
+      params['access_token'] = EXPA.client.get_updated_token
+      params['start_date'] = Date.now unless params.has_key?('start_date')
+      params['end_date'] = Date.now unless params.has_key?('end_date')
+      params['programmes[]'] = 1 unless params.has_key?('programmes[]')
+      params['basic[home_office_id]'] = 1606 unless params.has_key?('basic[home_office_id]')
+      params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
+
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+
+      result = {}
+      result['oGCDP'] = force_get_response(uri)
+
+      params['programmes[]'] = 1 unless params.has_key?('programmes[]')
+      params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+      result['iGCDP'] = force_get_response(uri)
+
+      params['programmes[]'] = 2 unless params.has_key?('programmes[]')
+      params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+      result['oGIP'] = force_get_response(uri)
+
+      params['programmes[]'] = 2 unless params.has_key?('programmes[]')
+      params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+      result['iGIP'] = force_get_response(uri)
+
+      result
+    end
+
     def get_attribute_json(id)
       params = {}
       params['access_token'] = EXPA.client.get_updated_token
