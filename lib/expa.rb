@@ -13,7 +13,7 @@ require 'expa/models/current_person'
 
 module EXPA
   class << self
-    $url_api = 'https://gis-api.aiesec.org:443/v1/'
+    $url_api = 'https://gis-api.aiesec.org/v2/'
 
     def setup
       if EXPA.client.nil?

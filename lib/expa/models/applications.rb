@@ -57,6 +57,10 @@ class Application
   end
 end
 
+class Analytics
+  
+end
+
 module EXPA::Applications
   class << self
     #EXPA only accepts the following filters['status']: 'matched' (accepted), 'accepted' (in progress), 'approved' (approved), 'realized' (realized), 'completed' (completed), 'withdrawn' (withdrawn), 'rejected' (rejected), 'declined' (declined)
@@ -102,19 +106,6 @@ module EXPA::Applications
       res['paging']['total_items'].to_i unless res.nil?
     end
 
-    private
-
-    def list_json(params = {})
-      params['access_token'] = EXPA.client.get_updated_token
-      params['page'] = 1 unless params.has_key?('page')
-      params['per_page'] = 25 unless params.has_key?('per_page')
-
-      uri = URI(url_return_all_applications)
-      uri.query = URI.encode_www_form(params)
-
-      force_get_response(uri)
-    end
-
     def get_analytics(params = {})
       params['access_token'] = EXPA.client.get_updated_token
       params['start_date'] = Date.now unless params.has_key?('start_date')
@@ -148,6 +139,19 @@ module EXPA::Applications
       result['iGIP'] = force_get_response(uri)
 
       result
+    end
+
+    private
+
+    def list_json(params = {})
+      params['access_token'] = EXPA.client.get_updated_token
+      params['page'] = 1 unless params.has_key?('page')
+      params['per_page'] = 25 unless params.has_key?('per_page')
+
+      uri = URI(url_return_all_applications)
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
     end
 
     def get_attribute_json(id)
