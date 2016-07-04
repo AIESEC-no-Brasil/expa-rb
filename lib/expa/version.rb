@@ -1,3 +1,3 @@
 module EXPA
-  VERSION = '0.1.0.4'
+  VERSION = '0.1.2.5'
 end
