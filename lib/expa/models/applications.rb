@@ -79,7 +79,7 @@ module EXPA::Applications
 
     def list_all
       applications = []
-      params = {'per_page' => 100}
+      params = {'per_page' => 500}
       items = total_items
       total_pages = items / params['per_page']
       total_pages = total_pages + 1 if items % params['per_page'] > 0
