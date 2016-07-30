@@ -68,13 +68,15 @@ module EXPA::Applications
       applications = []
 
       res = list_json(params)
-      data = res['data'] unless res.nil?
+      unless res.nil?
+        data = res['data']
 
-      data.each do |item|
-        applications << Application.new(item)
+        data.each do |item|
+          applications << Application.new(item)
+        end
+
+        applications
       end
-
-      applications
     end
 
     def list_all
