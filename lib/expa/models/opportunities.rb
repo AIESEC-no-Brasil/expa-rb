@@ -137,6 +137,7 @@ module EXPA::Opportunities
     end
 
     def force_get_response(uri)
+      puts 'Opportunities: ' + uri.to_s
       i = 0
       while i < 1000
         begin

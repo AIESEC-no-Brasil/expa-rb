@@ -173,6 +173,7 @@ module EXPA::Applications
 
       uri = URI(url_view_application_attributes(id))
       uri.query = URI.encode_www_form(params)
+      puts
 
       force_get_response(uri)
     end
@@ -186,6 +187,7 @@ module EXPA::Applications
     end
 
     def force_get_response(uri)
+      puts 'Applictions: ' + uri.to_s
       i = 0
       while i < 1000
         begin

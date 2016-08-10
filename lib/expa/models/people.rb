@@ -210,6 +210,7 @@ module EXPA::People
     end
 
     def get_attribute_json(id)
+      puts 'People: ' + uri.to_s
       params = {}
       params['access_token'] = EXPA.client.get_updated_token
       params['person_id'] = id
