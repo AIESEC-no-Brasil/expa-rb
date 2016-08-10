@@ -90,5 +90,65 @@ end
 module EXPA::Opportunities
   class << self
 
+    def find_by_id(id)
+      get_attributes(id)
+    end
+
+    def get_attributes(id)
+      res = get_attribute_json(id)
+      Opportunity.new(res) unless res.nil?
+    end
+
+    def total_items(params = {})
+      res = list_json(params)
+      res['paging']['total_items'].to_i unless res.nil?
+    end
+
+    private
+
+    def list_json(params = {})
+      params['access_token'] = EXPA.client.get_updated_token
+      params['page'] = 1 unless params.has_key?('page')
+      params['per_page'] = 25 unless params.has_key?('per_page')
+
+      uri = URI(url_return_all_opportunities)
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
+    def get_attribute_json(id)
+      params = {}
+      params['access_token'] = EXPA.client.get_updated_token
+      params['person_id'] = id
+
+      uri = URI(url_view_opportunity_attributes(id))
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
+    def url_return_all_opportunities
+      $url_api + 'opportunities'
+    end
+
+    def url_view_opportunity_attributes(id)
+      url_return_all_opportunities + '/' + id.to_s
+    end
+
+    def force_get_response(uri)
+      i = 0
+      while i < 1000
+        begin
+          res = Net::HTTP.get(uri)
+          res = JSON.parse(res) unless res.nil?
+          i = 1000
+        rescue => exception
+          puts exception.to_s
+          sleep(i)
+        end
+      end
+      res
+    end
   end
 end
