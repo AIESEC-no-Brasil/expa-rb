@@ -4,21 +4,27 @@ class Application
   # Data that comes at the lists from people
   attr_accessor :id
   attr_accessor :url
-  attr_accessor :matchability
   attr_accessor :status
   attr_accessor :current_status
+  attr_accessor :an_signed_at
   attr_accessor :favourite
+  attr_accessor :person
+  attr_accessor :opportunity
   attr_accessor :permissions
   attr_accessor :created_at
   attr_accessor :updated_at
-  attr_accessor :opportunity
+
+  # Data that comes at the get attributes
+
   attr_accessor :interviewed
-  attr_accessor :person
   attr_accessor :paid
-  attr_accessor :an_signed_at
+  attr_accessor :paid_at
+  attr_accessor :paid_by
   attr_accessor :experience_start_date
   attr_accessor :experience_end_date
   attr_accessor :matched_or_rejected_at
+  attr_accessor :matchability
+  attr_accessor :meta
   attr_accessor :date_matched
   attr_accessor :date_realized
   attr_accessor :date_completed
@@ -37,20 +43,20 @@ class Application
     self.opportunity = Opportunity.new(json['opportunity']) unless json['opportunity'].nil?
     self.interviewed = json['interviewed'] unless json['interviewed'].nil?
     self.paid = json['paid'] unless json['paid'].nil? #novo
-    #self.paid_at
-    #self.paid_by
+    self.paid_at = Time.parse(json['paid_at']) unless json['paid_at'].nil? #novo
+    self.paid_by = json['paid_by'] unless json['paid_by'].nil? #novo
     self.person = Person.new(json['person']) unless json['person'].nil?
-    #self.branch # TODO Struct
+    #self.branch = json['branch'] unless json['branch'].nil? #novo
     self.an_signed_at = Time.parse(json['an_signed_at']) unless json['an_signed_at'].nil? #novo
     self.experience_start_date = Time.parse(json['experience_start_date']) unless json['experience_start_date'].nil? #novo
     self.experience_end_date = Time.parse(json['experience_end_date']) unless json['experience_end_date'].nil? #novo
     self.matched_or_rejected_at = Time.parse(json['matched_or_rejected_at']) unless json['matched_or_rejected_at'].nil? #novo
     unless json['meta'].nil?
-      meta = json['meta']
-      self.date_matched = Time.parse(meta['date_matched']) unless meta['date_matched'].nil? #novo
-      self.date_realized = Time.parse(meta['date_realized']) unless meta['date_realized'].nil? #novo
-      self.date_completed = Time.parse(meta['date_completed']) unless meta['date_completed'].nil? #novo
-      self.date_ldm_completed = Time.parse(meta['date_ldm_completed']) unless meta['date_ldm_completed'].nil? #novo
+      self.meta = json['meta']
+      self.date_matched = Time.parse(self.meta['date_matched']) unless self.meta['date_matched'].nil? #novo
+      self.date_realized = Time.parse(self.meta['date_realized']) unless self.meta['date_realized'].nil? #novo
+      self.date_completed = Time.parse(self.meta['date_completed']) unless self.meta['date_completed'].nil? #novo
+      self.date_ldm_completed = Time.parse(self.meta['date_ldm_completed']) unless self.meta['date_ldm_completed'].nil? #novo
     end
 
     #self.meta

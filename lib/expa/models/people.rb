@@ -7,9 +7,9 @@ class Person
   attr_accessor :email
   attr_accessor :url
   attr_accessor :first_name
-  attr_accessor :birthday_date
   attr_accessor :full_name
   attr_accessor :last_name
+  attr_accessor :birthday_date
   attr_accessor :profile_photo_url
   attr_accessor :home_lc
   attr_accessor :home_mc
@@ -58,9 +58,9 @@ class Person
     self.email = json['email'] unless json['email'].nil?
     self.url = URI(json['url']) unless json['url'].nil?
     self.first_name = json['first_name'] unless json['first_name'].nil?
-    self.birthday_date = Date.parse(json['dob'],'%Y-%m-%d') unless json['dob'].nil?
     self.full_name = json['full_name'] unless json['full_name'].nil?
     self.last_name = json['last_name'] unless json['last_name'].nil?
+    self.birthday_date = Date.parse(json['dob'],'%Y-%m-%d') unless json['dob'].nil?
     self.profile_photo_url = URI(json['profile_photo_url']) unless json['profile_photo_url'].nil?
     self.home_lc = Office.new(json['home_lc']) unless json['home_lc'].nil?
     self.home_mc = Office.new(json['home_mc']) unless json['home_mc'].nil?
@@ -82,7 +82,7 @@ class Person
     self.contacted_at = Time.parse(json['contacted_at']) unless json['contacted_at'].nil?
     #self.contacted_by = EXPA::Peoples.find_by_id(json['contacted_by']) unless json['contacted_by'].nil?
     self.gender = json['gender'] unless json['gender'].nil?
-    self.address_info = json['address_info'] unless json['address_info'].nil? #TODO struct
+    self.address_info  = json['address_info'] unless json['address_info'].nil? #TODO struct
     self.contact_info = json['contact_info'] unless json['contact_info'].nil? #TODO struct
     self.current_office = Office.new(json['current_office']) unless json['current_office'].nil?
     self.cv_info = json['cv_info'].to_json unless json['cv_info'].nil?
