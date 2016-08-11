@@ -48,7 +48,7 @@ class Opportunity
     self.current_status = json['current_status'] unless json['status'].nil?
     self.location = json['location'] unless json['location'].nil?
     self.programmes = json['programmes'] unless json['programmes'].nil?
-    self.managers = json['managers'] unless json['managers'].nil?
+    #self.managers = json['managers'] unless json['managers'].nil?
     self.application_count = json['applications_count'] unless json['applications_count'].nil?
     self.views = json['views'] unless json['views'].nil?
     self.duration_min = json['duration_min'] unless json['duration_min'].nil?
