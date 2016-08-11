@@ -173,7 +173,6 @@ module EXPA::Applications
 
       uri = URI(url_view_application_attributes(id))
       uri.query = URI.encode_www_form(params)
-      puts
 
       force_get_response(uri)
     end
