@@ -65,8 +65,8 @@ class Opportunity
     self.is_ge = json['is_ge'] unless json['is_ge'].nil?
     self.favorites = json['favorites'] unless json['favorites'].nil?
     self.applied_to = json['applied_to'] unless json['applied_to'].nil?
-    self.host_lc = json['host_lc'] unless json['host_lc'].nil?
-    self.home_lc = json['home_lc'] unless json['home_lc'].nil?
+    self.host_lc = Office.new(json['host_lc']) unless json['host_lc'].nil?
+    self.home_lc = Office.new(json['home_lc']) unless json['home_lc'].nil?
     self.project = json['project'] unless json['project'].nil?
     self.openings = json['openings'] unless json['openings'].nil?
     self.available_openings = json['available_openings'] unless json['available_openings'].nil?
