@@ -245,7 +245,7 @@ module EXPA::People
     end
 
     def force_get_response(uri)
-      puts 'People: ' + uri.to_s
+      #puts 'People: ' + uri.to_s
       i = 0
       while i < 1000
         begin

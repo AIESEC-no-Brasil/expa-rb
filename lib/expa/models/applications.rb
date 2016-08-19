@@ -186,7 +186,7 @@ module EXPA::Applications
     end
 
     def force_get_response(uri)
-      puts 'Applictions: ' + uri.to_s
+      #puts 'Applictions: ' + uri.to_s
       i = 0
       while i < 1000
         begin
