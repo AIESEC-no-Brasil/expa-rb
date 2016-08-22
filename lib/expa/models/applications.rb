@@ -54,6 +54,7 @@ class Application
     unless json['meta'].nil?
       self.meta = json['meta']
       self.date_matched = Time.parse(self.meta['date_matched']) unless self.meta['date_matched'].nil? #novo
+      self.date_approved = Time.parse(self.meta['date_approved']) unless self.meta['date_approved'].nil? #novo
       self.date_realized = Time.parse(self.meta['date_realized']) unless self.meta['date_realized'].nil? #novo
       self.date_completed = Time.parse(self.meta['date_completed']) unless self.meta['date_completed'].nil? #novo
       self.date_ldm_completed = Time.parse(self.meta['date_ldm_completed']) unless self.meta['date_ldm_completed'].nil? #novo
