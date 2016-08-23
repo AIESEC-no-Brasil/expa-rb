@@ -58,8 +58,8 @@ class Opportunity
     self.latest_end_date = Time.parse(json['latest_end_date']) unless json['latest_end_date'].nil?
     self.profile_photo_url = URI(json['profile_photo_url']) unless json['profile_photo_url'].nil?
     self.cover_photo_urls = json['cover_photo_urls'] unless json['cover_photo_urls'].nil?
-    self.created_at = json['created_at'] unless json['created_at'].nil?
-    self.updated_at = json['updated_at'] unless json['updated_at'].nil?
+    self.created_at = Time.parse(json['created_at']) unless json['created_at'].nil?
+    self.updated_at = Time.parse(json['updated_at']) unless json['updated_at'].nil?
     self.office = Office.new(json['office']) unless json['office'].nil?
     self.is_gep = json['is_gep'] unless json['is_gep'].nil?
     self.is_ge = json['is_ge'] unless json['is_ge'].nil?
