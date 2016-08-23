@@ -71,6 +71,20 @@ end
 
 module EXPA::Applications
   class << self
+    def paging(params)
+      applications = []
+
+      res = list_json(params)
+      unless res.nil?
+        data = res['paging']
+
+        {
+          :total_items => data['total_items'],
+          :total_pages => data['total_pages']
+        }
+      end
+    end
+
     #EXPA only accepts the following filters['status']: 'matched' (accepted), 'accepted' (in progress), 'approved' (approved), 'realized' (realized), 'completed' (completed), 'withdrawn' (withdrawn), 'rejected' (rejected), 'declined' (declined)
     def list_by_param(params = {})
       applications = []
