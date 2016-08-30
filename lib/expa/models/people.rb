@@ -104,6 +104,18 @@ end
 
 module EXPA::People
   class << self
+    def paging(params)
+      res = list_json(params)
+      unless res.nil?
+        data = res['paging']
+
+        {
+          :total_items => data['total_items'],
+          :total_pages => data['total_pages']
+        }
+      end
+    end
+
     #EXPA only accepts the following filters['status']: 'open', 'in progress', 'matched', 'realized', 'completed'
     def list_by_param(params = {})
       peoples = []

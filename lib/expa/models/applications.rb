@@ -72,8 +72,6 @@ end
 module EXPA::Applications
   class << self
     def paging(params)
-      applications = []
-
       res = list_json(params)
       unless res.nil?
         data = res['paging']
@@ -204,17 +202,24 @@ module EXPA::Applications
     def force_get_response(uri)
       #puts 'Applictions: ' + uri.to_s
       i = 0
-      while i < 1000
+      while i <= 60
         begin
           res = Net::HTTP.get(uri)
           res = JSON.parse(res) unless res.nil?
           i = 1000
         rescue => exception
           puts exception.to_s
+          raise TokenException, 'Token has expired', caller if i == 60
           sleep(i)
         end
       end
       res
     end
+  end
+end
+class TokenException < RuntimeError
+  attr :okToRetry
+  def initialize(okToRetry)
+    @okToRetry = okToRetry
   end
 end
