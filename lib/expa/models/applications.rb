@@ -141,25 +141,25 @@ module EXPA::Applications
       puts uri
 
       result = {}
-      result['oGCDP'] = force_get_response(uri)
+      result['oGCDP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 1 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['iGCDP'] = force_get_response(uri)
+      result['iGCDP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['oGIP'] = force_get_response(uri)
+      result['oGIP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['iGIP'] = force_get_response(uri)
+      result['iGIP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       result
     end
