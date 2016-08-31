@@ -136,7 +136,7 @@ module EXPA::Applications
       params['basic[home_office_id]'] = 1606 unless params.has_key?('basic[home_office_id]')
       params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
 
-      uri = URI(url_return_all_applications)
+      uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
 
       result = {}
@@ -144,19 +144,19 @@ module EXPA::Applications
 
       params['programmes[]'] = 1 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
-      uri = URI(url_return_all_applications)
+      uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
       result['iGCDP'] = force_get_response(uri)
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
-      uri = URI(url_return_all_applications)
+      uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
       result['oGIP'] = force_get_response(uri)
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
-      uri = URI(url_return_all_applications)
+      uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
       result['iGIP'] = force_get_response(uri)
 
@@ -189,6 +189,10 @@ module EXPA::Applications
 
     def url_return_all_applications
       $url_api + 'applications'
+    end
+
+    def url_return_analytics
+      url_return_all_applications + 'analyse'
     end
 
     def url_view_application_attributes(id)
