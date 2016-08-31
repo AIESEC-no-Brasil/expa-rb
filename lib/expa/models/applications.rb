@@ -142,30 +142,25 @@ module EXPA::Applications
 
       result = {}
       res = force_get_response(uri)
-      puts res['children']
-      puts res['children']['buckets']
-      puts res['children']['buckets'][0]['key']
-      puts res['children']['buckets'][0]['total_approvals']
-      puts res['children']['buckets'][0]['total_realized']
-      result['oGCDP'] = res['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
+      result['oGCDP'] = res['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 1 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['iGCDP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
+      result['iGCDP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['oGIP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
+      result['oGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       params['programmes[]'] = 2 unless params.has_key?('programmes[]')
       params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      result['iGIP'] = force_get_response(uri)['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
+      result['iGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals'],re:lc['total_realized']}]}.to_h
 
       result
     end
