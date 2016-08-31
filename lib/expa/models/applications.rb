@@ -193,7 +193,7 @@ module EXPA::Applications
     end
 
     def url_return_analytics
-      url_return_all_applications + 'analyze.json'
+      url_return_all_applications + '/analyze.json'
     end
 
     def url_view_application_attributes(id)
