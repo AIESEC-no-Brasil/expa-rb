@@ -138,6 +138,7 @@ module EXPA::Applications
 
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
+      puts uri
 
       result = {}
       result['oGCDP'] = force_get_response(uri)
