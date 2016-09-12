@@ -214,6 +214,7 @@ module EXPA::Applications
       while i <= 60
         begin
           res = Net::HTTP.get(uri)
+          puts res
           res = JSON.parse(res) unless res.nil?
           i = 1000
         rescue => exception
