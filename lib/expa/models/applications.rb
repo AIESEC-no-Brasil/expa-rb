@@ -138,6 +138,8 @@ module EXPA::Applications
 
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
+      puts uri
+      puts uri.query
 
       result = {}
       res = force_get_response(uri)
