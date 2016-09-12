@@ -132,34 +132,39 @@ module EXPA::Applications
       params['access_token'] = EXPA.client.get_updated_token
       params['start_date'] = Date.today unless params.has_key?('start_date')
       params['end_date'] = Date.today unless params.has_key?('end_date')
-      params['programmes[]'] = 1 unless params.has_key?('programmes[]')
+      params['programmes[]'] = 1
       params['basic[home_office_id]'] = 1606 unless params.has_key?('basic[home_office_id]')
-      params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
+      params['basic[type]'] = 'person'
 
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      puts uri
 
       result = {}
       res = force_get_response(uri)
       result['oGCDP'] = res['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
-      params['programmes[]'] = 1 unless params.has_key?('programmes[]')
-      params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
+      params['programmes[]'] = 1
+      params['basic[type]'] = 'opportunity'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
+      puts uri
+      puts uri.query
       result['iGCDP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
-      params['programmes[]'] = 2 unless params.has_key?('programmes[]')
-      params['basic[type]'] = 'person' unless params.has_key?('basic[type]')
+      params['programmes[]'] = 2
+      params['basic[type]'] = 'person'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
+      puts uri
+      puts uri.query
       result['oGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
-      params['programmes[]'] = 2 unless params.has_key?('programmes[]')
-      params['basic[type]'] = 'opportunity' unless params.has_key?('basic[type]')
+      params['programmes[]'] = 2
+      params['basic[type]'] = 'opportunity'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
+      puts uri
+      puts uri.query
       result['iGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
       result
