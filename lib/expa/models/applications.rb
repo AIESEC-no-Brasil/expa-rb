@@ -138,8 +138,6 @@ module EXPA::Applications
 
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      puts uri
-      puts uri.query
 
       result = {}
       res = force_get_response(uri)
@@ -149,24 +147,18 @@ module EXPA::Applications
       params['basic[type]'] = 'opportunity'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      puts uri
-      puts uri.query
       result['iGCDP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
       params['programmes[]'] = 2
       params['basic[type]'] = 'person'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      puts uri
-      puts uri.query
       result['oGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
       params['programmes[]'] = 2
       params['basic[type]'] = 'opportunity'
       uri = URI(url_return_analytics)
       uri.query = URI.encode_www_form(params)
-      puts uri
-      puts uri.query
       result['iGIP'] = force_get_response(uri)['analytics']['children']['buckets'].map{ |lc| [lc['key'],{apd:lc['total_approvals']['doc_count'],re:lc['total_realized']['doc_count']}]}.to_h
 
       result
@@ -214,7 +206,6 @@ module EXPA::Applications
       while i <= 60
         begin
           res = Net::HTTP.get(uri)
-          puts res
           res = JSON.parse(res) unless res.nil?
           i = 1000
         rescue => exception
