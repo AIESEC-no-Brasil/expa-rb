@@ -1,13 +1,44 @@
+# This file encapsulates the Client entity and
+# the functionality to connect and authenticate
+# to EXPA.
 module EXPA
   class Client
 
+    # Sets up the environment every time a Client
+    # instance is created, e.g. Client.new()
     def initialize
+
+      # URL used to access the authentication form.
+      # Open it in your browser if you want details
       @url = 'https://auth.aiesec.org/users/sign_in'
+      
+      # Every time a user authenticates in EXPA, 
+      # a token is generated and stored in the cookies.
+      # This class contain functionality to store that 
+      # token in this variable.
       @token = nil
+      
+      #
       @max_age = nil
+      
+      #
       @expiration_time = nil
     end
-
+    
+    # This method authenticates to EXPA using a specific
+    # user's credentials and retrieves the token
+    # information from cookies.
+    #
+    # Example:
+    #   EXPA::Client.auth('example.user@aiesec.net','example.password')
+    #
+    # Arguments:
+    #   email: (String) - This should be a valid username on EXPA.
+    #   password: (String) - The password for the user specified by the email.
+    #
+    # Returns:
+    #   Boolean - Returns true if routine is successful, returns false otherwise.
+    #
     def auth(email, password)
       @email = email
       @password = password
