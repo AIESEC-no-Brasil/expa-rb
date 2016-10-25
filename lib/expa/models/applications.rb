@@ -1,4 +1,5 @@
 require_relative 'opportunities'
+require 'json'
 
 class Application
   # Data that comes at the lists from people
