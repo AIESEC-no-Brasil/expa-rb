@@ -40,6 +40,35 @@ module EXPA
       end
     end
 
+    def login(email, password)
+      agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
+      page = agent.get(@url)
+      aiesec_form = page.form()
+      aiesec_form.field_with(:name => 'user[email]').value = email
+      aiesec_form.field_with(:name => 'user[password]').value = password
+
+      begin
+        page = agent.submit(aiesec_form, aiesec_form.buttons.first)
+      rescue => exception
+        puts exception.to_s
+        false
+      else
+        if page.code.to_i == 200
+          cj = page.mech.agent.cookie_jar.store
+          index = cj.count
+          for i in 0...index
+            index = i if cj.to_a[i].domain == 'experience.aiesec.org'
+          end
+          if index != cj.count
+            token = cj.to_a[index].value
+            expiration_time = cj.to_a[index].created_at
+            max_age = cj.to_a[index].max_age
+          end
+        end
+      end
+      {token:token,expiration_time:expiration_time,max_age:max_age}
+    end
+
     def get_updated_token
       nil if @email.nil? || @password.nil?
 
