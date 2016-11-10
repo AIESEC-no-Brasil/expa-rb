@@ -6,6 +6,7 @@ module EXPA
       @token = nil
       @max_age = nil
       @expiration_time = nil
+      @password = nil
     end
 
     def auth(email, password)
@@ -64,6 +65,10 @@ module EXPA
     def get_max_age
       @max_age = 1800 if @max_age.nil?
       @max_age
+    end
+
+    def get_email
+      @email
     end
   end
 end

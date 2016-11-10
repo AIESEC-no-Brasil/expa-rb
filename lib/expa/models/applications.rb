@@ -1,5 +1,4 @@
 require_relative 'opportunities'
-require 'json'
 
 class Application
   # Data that comes at the lists from people
@@ -211,7 +210,6 @@ module EXPA::Applications
           i = 1000
         rescue => exception
           puts exception.to_s
-          raise TokenException, 'Token has expired', caller if i == 60
           sleep(i)
         end
       end
