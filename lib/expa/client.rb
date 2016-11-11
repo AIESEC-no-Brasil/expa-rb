@@ -51,7 +51,7 @@ module EXPA
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
         puts aiesec_form.buttons.first
-        puts page.content
+        puts page.texts
         puts page.code.to_i
       rescue => exception
         puts exception.to_s
