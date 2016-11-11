@@ -44,13 +44,14 @@ module EXPA
       agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
       page = agent.get(@url)
       aiesec_form = page.form()
+      puts aiesec_form
       aiesec_form.field_with(:name => 'user[email]').value = email
       aiesec_form.field_with(:name => 'user[password]').value = password
 
-      token = nil
-      password = nil
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
+        puts aiesec_form.buttons.first
+        puts page
       rescue => exception
         puts exception.to_s
         false
@@ -65,6 +66,9 @@ module EXPA
             token = cj.to_a[index].value
             expiration_time = cj.to_a[index].created_at
             max_age = cj.to_a[index].max_age
+            puts 'token: '+token
+            puts 'expiration_time: '+expiration_time
+            puts 'max_age: '+max_age
           end
         end
       end
