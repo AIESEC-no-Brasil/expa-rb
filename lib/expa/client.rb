@@ -44,13 +44,13 @@ module EXPA
       agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
       page = agent.get(@url)
       aiesec_form = page.form()
-      puts aiesec_form.content
+      puts aiesec_form.texts
       aiesec_form.field_with(:name => 'user[email]').value = email
       aiesec_form.field_with(:name => 'user[password]').value = password
 
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
-        puts aiesec_form.buttons.first.content
+        puts aiesec_form.buttons.first
         puts page.content
         puts page.code.to_i
       rescue => exception
