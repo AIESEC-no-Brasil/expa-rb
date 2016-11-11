@@ -47,6 +47,8 @@ module EXPA
       aiesec_form.field_with(:name => 'user[email]').value = email
       aiesec_form.field_with(:name => 'user[password]').value = password
 
+      token = nil
+      password = nil
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
       rescue => exception
