@@ -44,14 +44,15 @@ module EXPA
       agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
       page = agent.get(@url)
       aiesec_form = page.form()
-      puts aiesec_form
+      puts aiesec_form.content
       aiesec_form.field_with(:name => 'user[email]').value = email
       aiesec_form.field_with(:name => 'user[password]').value = password
 
       begin
         page = agent.submit(aiesec_form, aiesec_form.buttons.first)
-        puts aiesec_form.buttons.first
-        puts page
+        puts aiesec_form.buttons.first.content
+        puts page.content
+        puts page.code.to_i
       rescue => exception
         puts exception.to_s
         false
@@ -61,6 +62,7 @@ module EXPA
           index = cj.count
           for i in 0...index
             index = i if cj.to_a[i].domain == 'experience.aiesec.org'
+            puts i
           end
           if index != cj.count
             token = cj.to_a[index].value
