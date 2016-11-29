@@ -106,7 +106,7 @@ module EXPA
             token = cj.to_a[index].value
             expiration_time = cj.to_a[index].created_at
             max_age = cj.to_a[index].max_age
-            puts 'token: '+token.to_s
+            puts 'token: '+token['token']['access_token'].to_s
             puts 'expiration_time: '+expiration_time.to_s
             puts 'max_age: '+max_age.to_s
           end
