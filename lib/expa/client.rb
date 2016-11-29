@@ -82,6 +82,7 @@ module EXPA
       agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1',OpenSSL::SSL::VERIFY_NONE}
       page = agent.get(@url_op)
       aiesec_form = page.forms[0]
+      puts aiesec_form.texts
       aiesec_form.field_with(:name => 'user[email]').value = email
       aiesec_form.field_with(:name => 'user[password]').value = password
 
@@ -98,7 +99,7 @@ module EXPA
           cj = page.mech.agent.cookie_jar.store
           index = cj.count
           for i in 0...index
-            index = i if cj.to_a[i].domain == 'opportunities.aiesec.org '
+            index = i if cj.to_a[i].domain == 'opportunities.aiesec.org'
             puts i
           end
           if index != cj.count
