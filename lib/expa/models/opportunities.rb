@@ -89,6 +89,33 @@ end
 
 module EXPA::Opportunities
   class << self
+    def paging(params)
+      res = list_json(params)
+      unless res.nil?
+        data = res['paging']
+
+        {
+          :total_items => data['total_items'],
+          :total_pages => data['total_pages']
+        }
+      end
+    end
+
+    #EXPA only accepts the following filters['status']: 'matched' (accepted), 'accepted' (in progress), 'approved' (approved), 'realized' (realized), 'completed' (completed), 'withdrawn' (withdrawn), 'rejected' (rejected), 'declined' (declined)
+    def list_by_param(params = {})
+      opportunities = []
+
+      res = list_json(params)
+      unless res.nil?
+        data = res['data']
+
+        data.each do |item|
+          opportunities << Opportunity.new(item)
+        end
+
+        opportunities
+      end
+    end
 
     def find_by_id(id)
       get_attributes(id)
