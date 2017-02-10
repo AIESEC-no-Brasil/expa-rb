@@ -117,6 +117,10 @@ module EXPA::Opportunities
       end
     end
 
+    def list_single_opportunity(xp_id)
+      single_opportunity_list_json(nil, xp_id)
+    end
+
     def find_by_id(id)
       get_attributes(id)
     end
@@ -139,6 +143,16 @@ module EXPA::Opportunities
       params['per_page'] = 25 unless params.has_key?('per_page')
 
       uri = URI(url_return_all_opportunities)
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
+    def single_opportunity_list_json(params = {}, xp_id)
+      params['access_token'] = EXPA.client.get_updated_token
+      params['opportunity_id'] = xp_id
+
+      uri = URI(url_return_opportunity)
       uri.query = URI.encode_www_form(params)
 
       force_get_response(uri)
