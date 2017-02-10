@@ -121,6 +121,25 @@ module EXPA::Opportunities
       single_opportunity_list_json(nil, xp_id)
     end
 
+    def list_created_after(time, params = {})
+      opportunities = []
+      params['per_page'] = 25
+      total_pages = total_items / params['per_page']
+      total_pages = total_pages + 1 if total_items % params['per_page'] > 0
+
+      for i in 1..total_pages
+        params['page'] = i
+        opportunities.concat(list_by_param(params))
+        break if opportunities.last.created_at < time
+      end
+
+      opportunities.delete_if do |opportunity|
+        opportunity.created_at < time
+      end
+
+      opportunities
+    end
+
     def find_by_id(id)
       get_attributes(id)
     end
