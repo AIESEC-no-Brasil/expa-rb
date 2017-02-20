@@ -118,7 +118,7 @@ module EXPA::Opportunities
     end
 
     def list_single_opportunity(xp_id)
-      single_opportunity_list_json(nil, xp_id)
+      single_opportunity_list_json({}, xp_id)
     end
 
     def list_created_after(time, params = {})
@@ -171,7 +171,7 @@ module EXPA::Opportunities
       params['access_token'] = EXPA.client.get_updated_token
       params['opportunity_id'] = xp_id
 
-      uri = URI(url_return_opportunity)
+      uri = URI(url_return_opportunity(xp_id))
       uri.query = URI.encode_www_form(params)
 
       force_get_response(uri)
@@ -190,6 +190,10 @@ module EXPA::Opportunities
 
     def url_return_all_opportunities
       $url_api + 'opportunities'
+    end
+
+    def url_return_opportunity(xp_id)
+      $url_api + "opportunities/#{xp_id}"
     end
 
     def url_view_opportunity_attributes(id)
