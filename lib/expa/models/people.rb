@@ -130,6 +130,10 @@ module EXPA::People
       peoples
     end
 
+    def list_single_person(xp_id)
+      single_person_list_json({}, xp_id)
+    end
+
     # This method was not tested because it would take too long to download the whole peoples database from EXPA. But this methods uses other methods that are tested
     def list_all
       peoples = []
@@ -242,6 +246,20 @@ module EXPA::People
       uri.query = URI.encode_www_form(params)
 
       force_get_response(uri)
+    end
+
+    def single_person_list_json(params = {}, xp_id)
+      params['access_token'] = EXPA.client.get_updated_token
+      params['person_id'] = xp_id
+
+      uri = URI(url_return_person(xp_id))
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
+    def url_return_person(xp_id)
+      $url_api + "people/#{xp_id}"
     end
 
     def url_return_all_people
