@@ -9,7 +9,7 @@ class Office
 
   def initialize(json)
     self.id = json['id'].to_i unless json['id'].nil?
-    self.parent_id = json['parent']['parent_id'].to_i unless json['parent'].nil? || json['parent']['parent_id'].nil?
+    self.parent_id = json['parent']['id'].to_i unless json['parent'].nil? || json['parent']['id'].nil?
     self.name = json['name'] unless json['name'].nil?
     self.full_name = json['full_name'] unless json['full_name'].nil?
     self.tag = json['tag'] unless json['tag'].nil?
