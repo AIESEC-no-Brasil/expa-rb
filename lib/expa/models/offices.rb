@@ -21,6 +21,14 @@ module EXPA::Offices
       single_office_list_json({}, xp_id)
     end
 
+    def list_lcs
+      list_json('lcs')
+    end
+
+    def list_mcs
+      list_json('mcs')
+    end
+
     private
 
     def single_office_list_json(params = {}, xp_id)
@@ -33,8 +41,21 @@ module EXPA::Offices
       force_get_response(uri)
     end
 
+    def list_json(params = {},list)
+      params['access_token'] = EXPA.client.get_updated_token
+
+      uri = URI(url_return_lists(list))
+      uri.query = URI.encode_www_form(params)
+
+      force_get_response(uri)
+    end
+
     def url_return_committee(xp_id)
       $url_api + "committees/#{xp_id}"
+    end
+
+    def url_return_lists(list)
+      $url_api + "lists/#{list}.json"
     end
 
     def force_get_response(uri)
