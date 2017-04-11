@@ -8,9 +8,10 @@ class Office
 
   def initialize(json)
     self.id = json['id'].to_i unless json['id'].nil?
-    self.parent_id = json['parent_id'].to_i unless json['id'].nil?
+    self.parent_id = json['parent']['parent_id'].to_i unless json['parent'].nil? || json['parent']['parent_id'].nil?
     self.name = json['name'] unless json['name'].nil?
     self.full_name = json['full_name'] unless json['full_name'].nil?
+    self.tag = json['tag'] unless json['tag'].nil?
     self.url = URI(json['url']) unless json['url'].nil?
   end
 end
@@ -22,11 +23,25 @@ module EXPA::Offices
     end
 
     def list_lcs
-      list_json('lcs')
+      lcs = []
+
+      data = list_json('lcs')
+      data.each do |item|
+        lcs << Office.new(item)
+      end
+
+      lcs
     end
 
     def list_mcs
-      list_json('mcs')
+      mcs = []
+
+      data = list_json('mcs')
+      data.each do |item|
+        mcs << Office.new(item)
+      end
+      
+      mcs
     end
 
     private
