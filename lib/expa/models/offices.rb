@@ -4,6 +4,7 @@ class Office
   attr_accessor :name
   attr_accessor :full_name
   attr_accessor :url
+  attr_accessor :tag
 
 
   def initialize(json)
