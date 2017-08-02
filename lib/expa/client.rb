@@ -2,7 +2,7 @@ module EXPA
   class Client
 
     def initialize
-      @url = 'https://experience.aiesec.org/auth'
+      @url = 'https://auth.aiesec.org/users/sign_in'
       @url_op = 'https://aiesec.org/auth'
       @token = nil
       @max_age = nil
