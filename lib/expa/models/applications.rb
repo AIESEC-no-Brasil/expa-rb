@@ -66,7 +66,7 @@ class Application
 end
 
 class Analytics
-  
+
 end
 
 module EXPA::Applications

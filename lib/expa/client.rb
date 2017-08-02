@@ -29,12 +29,14 @@ module EXPA
           cj = page.mech.agent.cookie_jar.store
           index = cj.count
           for i in 0...index
-            index = i if cj.to_a[i].domain == 'experience.aiesec.org'
+            index = i if cj.to_a[i].domain == 'aiesec.org'
           end
           if index != cj.count
-            @token = cj.to_a[index].value
+            params = cj.to_a[index].value
+            data = JSON.parse(URI.decode(params))
+            @token = data["token"]["access_token"]
             @expiration_time = cj.to_a[index].created_at
-            @max_age = cj.to_a[index].max_age
+            @max_age = data["token"]["max_age"]
             true
           end
         end
